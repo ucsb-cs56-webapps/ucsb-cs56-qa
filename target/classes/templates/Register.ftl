@@ -12,7 +12,7 @@
   <p>Enter pass:</p>
   <input type= "text" name="textbox1" size="50" />
   <p></p>
-  <a href="/index"><button auto="autofocus">Login in</button></a>
+  <a href="/index"><button auto="autofocus">Register</button></a>
 
  </body>
 </html>
