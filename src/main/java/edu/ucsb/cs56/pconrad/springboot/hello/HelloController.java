@@ -20,11 +20,6 @@ public class HelloController {
         return "ask";
     }
 
-    @RequestMapping("/answer")
-    public String answer() {
-        return "answer";
-    }
-
     @RequestMapping("profile")
     public String profile() {
         return "profile";
