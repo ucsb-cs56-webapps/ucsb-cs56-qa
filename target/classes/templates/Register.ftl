@@ -2,7 +2,7 @@
 <html>
  <head>
    <title>Sign Up</title>
-   <#include "head.ftl" />
+    <#include "./partials/head.ftl" />
  </head>
  <body>
    
@@ -12,7 +12,7 @@
   <p>Enter pass:</p>
   <input type= "text" name="textbox1" size="50" />
   <p></p>
-  <a href="/index"><button auto="autofocus">Register</button></a>
+  <a href="/home"><button auto="autofocus">Register</button></a>
 
  </body>
 </html>
