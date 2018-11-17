@@ -26,7 +26,8 @@
             </form>
         </div>
         <a id="reg_link" href="register">Don't have an account? Click here to register!</a>
-        <img src="img/UCSB.png">
+        <img id="qa" src="img/qa.png" alt="qa">
+        <img id="palm_tree" src="img/palm_tree.png" alt="palm tree">
     </div>
 </body>
 </html>

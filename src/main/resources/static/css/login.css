@@ -25,7 +25,27 @@
         }
     
     #reg_link {
+        display: inline-block;
         color: white;
         text-decoration: underline;
     }
+
+    #school_logo {
+        width: 40vh;
+    }
+
+    #qa {
+        position: fixed;
+        top: 5vh;
+        right: 10vw;
+        height: 35vh;
+    }
+
+    #palm_tree {
+        position: fixed;
+        bottom: 0;
+        right: 0vw;
+        height: 75%;
+    }
+
 
