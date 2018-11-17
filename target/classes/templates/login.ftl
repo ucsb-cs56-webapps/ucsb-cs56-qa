@@ -22,7 +22,7 @@
                     <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                     </div>
                 </div>
-                <a href="home" id="login_btn" class="btn btn-success w-50">Login</a>
+                <a href="index" id="login_btn" class="btn btn-success w-50">Login</a>
             </form>
         </div>
         <a id="reg_link" href="register">Don't have an account? Click here to register!</a>
