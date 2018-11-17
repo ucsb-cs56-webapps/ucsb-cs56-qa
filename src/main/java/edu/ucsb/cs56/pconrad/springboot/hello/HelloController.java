@@ -5,24 +5,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HelloController {
-
     @RequestMapping("/")
+    public String login() {
+	return "login";
+    }
+    
+    @RequestMapping("/index")
     public String index() {
         return "index";
     }
 
-	@RequestMapping("/ask")
+    @RequestMapping("/ask")
     public String ask() {
         return "ask";
     }
 
-	@RequestMapping("/answer")
-	public String answer() {
+    @RequestMapping("/answer")
+    public String answer() {
         return "answer";
     }
 
-	@RequestMapping("profile")
-	public String profile() {
+    @RequestMapping("profile")
+    public String profile() {
         return "profile";
     }
 

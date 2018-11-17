@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <!-- Brand -->
-  <a class="navbar-brand" href="/">My-Webapp</a>
+  <a class="navbar-brand" href="/index">QA App</a>
 
   <!-- Links -->
   <ul class="navbar-nav">
@@ -20,6 +20,7 @@
         <a class="dropdown-item" href="/ask">Ask</a>
         <a class="dropdown-item" href="/answer">Answer</a>
         <a class="dropdown-item" href="/profile">Profile</a>
+	<a class="dropdown-item" href="/">Login</a>
       </div>
     </li>
   </ul>
