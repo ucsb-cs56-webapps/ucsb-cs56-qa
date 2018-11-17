@@ -10,6 +10,7 @@
 }
 
     #main_title {
+        animation: colorchange 5s infinite alternate;
         -webkit-animation: colorchange 5s infinite alternate;
     }
 
@@ -47,6 +48,12 @@
         right: 0vw;
         height: 75%;
     }
+
+@keyframes colorchange {
+    0% {color: rgb(255, 255, 255);}
+    50% {color: rgba(255, 187, 0, 0.938);}
+    100% {color: rgb(255, 255, 255);}
+}
 
 @-webkit-keyframes colorchange {
     0% {color: rgb(255, 255, 255);}
