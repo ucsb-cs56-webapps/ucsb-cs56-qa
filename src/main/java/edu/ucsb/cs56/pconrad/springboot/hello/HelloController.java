@@ -15,9 +15,9 @@ public class HelloController {
         return "register";
     }
 
-	@RequestMapping("/home")
-    public String home() {
-        return "home";
+	@RequestMapping("/index")
+    public String index() {
+        return "index";
     }
 
 	@RequestMapping("/ask")
