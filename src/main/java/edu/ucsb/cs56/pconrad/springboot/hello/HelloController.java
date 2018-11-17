@@ -10,6 +10,11 @@ public class HelloController {
         return "login";
     }
 
+    @RequestMapping("/register")
+    public String register() {
+        return "register";
+    }
+
 	@RequestMapping("/home")
     public String home() {
         return "home";

@@ -1,4 +1,31 @@
-h2 {
+* {
+    margin: 0;
+    padding: 0;
     font-family: 'Orbitron', sans-serif;
 }
+
+#main_container {
+    background-image: -webkit-linear-gradient(-30deg, rgb(23, 131, 226) 50%, rgb(231, 171, 7) 50%);
+    height: 100vh;
+}
+
+    #main_title {
+        color: white;
+    }
+
+    #login_box {
+        border: 2px solid white;
+        border-radius: 20px;
+        color: white;
+        text-align: center;
+    }
+
+        #login_btn {
+            border: 1px solid white;
+        }
+    
+    #reg_link {
+        color: white;
+        text-decoration: underline;
+    }
 
