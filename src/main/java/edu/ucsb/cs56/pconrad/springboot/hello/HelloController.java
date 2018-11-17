@@ -20,6 +20,11 @@ public class HelloController {
         return "ask";
     }
 
+    @RequestMapping("Register")
+    public String Register(){
+        return "Register";
+    }
+
     @RequestMapping("profile")
     public String profile() {
         return "profile";
