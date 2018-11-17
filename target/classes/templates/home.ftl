@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <#include "head.ftl" />
+    <#include "./partials/head.ftl" />
     <title>UCSB Q&A</title>
 </head>
 <body>

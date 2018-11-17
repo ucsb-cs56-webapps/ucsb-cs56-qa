@@ -15,7 +15,12 @@ public class HelloController {
         return "home";
     }
 
-    @RequestMapping("profile")
+	@RequestMapping("/ask")
+    public String ask() {
+        return "ask";
+    }
+
+    @RequestMapping("/profile")
     public String profile() {
         return "profile";
     }
