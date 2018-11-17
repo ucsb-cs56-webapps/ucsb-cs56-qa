@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HelloController {
-
     @RequestMapping("/")
     public String login() {
         return "login";
@@ -16,13 +15,8 @@ public class HelloController {
         return "home";
     }
 
-	@RequestMapping("/answer")
-	public String answer() {
-        return "answer";
-    }
-
-	@RequestMapping("profile")
-	public String profile() {
+    @RequestMapping("profile")
+    public String profile() {
         return "profile";
     }
 
