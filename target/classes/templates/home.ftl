@@ -151,6 +151,47 @@
                 <!-- End of Single Answer-->
             </div>
         </div>
+        <div class="ml-4" id="explore_box">
+            <div class="pt-2" id="explore_title_wrapper">
+                <h3>Explore Popular Questions!</h3>
+                <h5>2 hot questions, 1 controversial question being asked</h5>
+            </div>
+            <div class="pt-2" id="explore_content_wrapper">
+                <!-- Single Question-->
+                <div class="single_explore hot">
+                    <div class="explore_header">
+                        <img class="ml-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHaSURBVEhLYxgFowAvcPIOtnX3DZ/lGxKzx9UnbKarZ5A1VIo6wMM/rNfNN/Rvc0ffn0VLV/1vbu/94+oT+tfDL7wHqoQy4OwdEu3pH/Hr5q07/5HBjVu3/3sGRPx28g6JgColH/gERV9asnzNP6jZKAAk7hMcfQGqlHwADKZfFy9fhRqLCkDibj5hP6FKyQfAIHl36MhxqLGo4CBQ3DMw8h1UKfnAMyByUVF53Y9//1BDDMQvLKv94RUQsRCqlHzg5h8u6+4X/r6xtfvni5evwBa8ePHqP4gPEgdGvDRUKWXA2TNcDeijEy7eIf89/CL+gGjvwKijLt5BqlAl1AMuPqFyjl7BViAaKkR1wAgKOhevcE0QDeJDhKkAnH0CTYFBtMLDP/wLKJhgGMR39wtbCpKHKiUd2IeG8rj5hS0CFSd1zZ0/T54+C47w379/g+kTp87+B4mDihegZZONjdNYoVqJAy4uofxeAVEXo5Oyvt9/8BCconABkHx0UuZ3r4DIsyB9UCMIA2DBtyM5s/DH16/foEbhByB1yZkF34FBuAVqBH4ASj1egVE/nz57ATWCOABSD9Ln7BNiCTUKNwgNDWXetnOvG1CfC6n44MGjTiD9UKNGATmAgQEALM3GBzFt50AAAAAASUVORK5CYII=">
+                        <h6 class="ml-2">User A:</h6>
+                    </div>
+                    <div class="explore_content">
+                        <p class="mt-2">Why is the food in dining commons so bad?</p>
+                    </div>
+                </div>
+                <!-- End of Single Question-->
+                <!-- Single Question-->
+                <div class="single_explore hot">
+                    <div class="explore_header">
+                        <img class="ml-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHaSURBVEhLYxgFowAvcPIOtnX3DZ/lGxKzx9UnbKarZ5A1VIo6wMM/rNfNN/Rvc0ffn0VLV/1vbu/94+oT+tfDL7wHqoQy4OwdEu3pH/Hr5q07/5HBjVu3/3sGRPx28g6JgColH/gERV9asnzNP6jZKAAk7hMcfQGqlHwADKZfFy9fhRqLCkDibj5hP6FKyQfAIHl36MhxqLGo4CBQ3DMw8h1UKfnAMyByUVF53Y9//1BDDMQvLKv94RUQsRCqlHzg5h8u6+4X/r6xtfvni5evwBa8ePHqP4gPEgdGvDRUKWXA2TNcDeijEy7eIf89/CL+gGjvwKijLt5BqlAl1AMuPqFyjl7BViAaKkR1wAgKOhevcE0QDeJDhKkAnH0CTYFBtMLDP/wLKJhgGMR39wtbCpKHKiUd2IeG8rj5hS0CFSd1zZ0/T54+C47w379/g+kTp87+B4mDihegZZONjdNYoVqJAy4uofxeAVEXo5Oyvt9/8BCconABkHx0UuZ3r4DIsyB9UCMIA2DBtyM5s/DH16/foEbhByB1yZkF34FBuAVqBH4ASj1egVE/nz57ATWCOABSD9Ln7BNiCTUKNwgNDWXetnOvG1CfC6n44MGjTiD9UKNGATmAgQEALM3GBzFt50AAAAAASUVORK5CYII=">
+                        <h6 class="ml-2">User B:</h6>
+                    </div>
+                    <div class="explore_content">
+                        <p class="mt-2">Has anyone taken Conrad's CS56 before? What was it like?</p>
+                    </div>
+                </div>
+                <!-- End of Single Question-->
+                <!-- Single Question-->
+                <div class="single_explore controversial">
+                    <div class="explore_header">
+                        <img class="ml-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHaSURBVEhLYxgFowAvcPIOtnX3DZ/lGxKzx9UnbKarZ5A1VIo6wMM/rNfNN/Rvc0ffn0VLV/1vbu/94+oT+tfDL7wHqoQy4OwdEu3pH/Hr5q07/5HBjVu3/3sGRPx28g6JgColH/gERV9asnzNP6jZKAAk7hMcfQGqlHwADKZfFy9fhRqLCkDibj5hP6FKyQfAIHl36MhxqLGo4CBQ3DMw8h1UKfnAMyByUVF53Y9//1BDDMQvLKv94RUQsRCqlHzg5h8u6+4X/r6xtfvni5evwBa8ePHqP4gPEgdGvDRUKWXA2TNcDeijEy7eIf89/CL+gGjvwKijLt5BqlAl1AMuPqFyjl7BViAaKkR1wAgKOhevcE0QDeJDhKkAnH0CTYFBtMLDP/wLKJhgGMR39wtbCpKHKiUd2IeG8rj5hS0CFSd1zZ0/T54+C47w379/g+kTp87+B4mDihegZZONjdNYoVqJAy4uofxeAVEXo5Oyvt9/8BCconABkHx0UuZ3r4DIsyB9UCMIA2DBtyM5s/DH16/foEbhByB1yZkF34FBuAVqBH4ASj1egVE/nz57ATWCOABSD9Ln7BNiCTUKNwgNDWXetnOvG1CfC6n44MGjTiD9UKNGATmAgQEALM3GBzFt50AAAAAASUVORK5CYII=">
+                        <h6 class="ml-2">User C:</h6>
+                    </div>
+                    <div class="explore_content">
+                        <p class="mt-2">Can these protesters in front of the library shut up already? I need to study.</p>
+                    </div>
+                </div>
+                <!-- End of Single Question-->
+            </div>
+        </div>
     </div>
 </body>
 </html>

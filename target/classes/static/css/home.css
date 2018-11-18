@@ -106,4 +106,72 @@
                         display: inline-block;
                         width: 90%;
                     }
+    
+        #explore_box {
+            border: 2px solid white;
+            border-radius: 1rem;
+            width: 36rem;
+            height: 40rem;
+            text-align: center;
+            overflow: auto;
+        }
+
+            #explore_title_wrapper {
+                background-color: rgb(71, 70, 70);
+                width: 100%;
+                height: 17%;
+                color: white;
+            }
+
+            #explore_content_wrapper {
+                width: 100%;
+                min-height: 83%;
+                overflow-y: auto;
+            }
+
+                .single_explore {
+                    display: inline-block;
+                    width: 90%;
+                    height: 6rem;
+                    color: white;
+                    border: 1px solid black;
+                    border-radius: 1rem;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                }
+
+                    .hot {
+                        background-color: rgb(38, 125, 238);
+                    }
+
+                    .controversial {
+                        background-color: rgb(212, 41, 41)
+                    }
+
+                    .explore_header {             
+                        text-align: start;
+                    }
+    
+                        .explore_header img {
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+    
+                        .explore_header h6 {
+                            display: inline-block;
+                            margin-bottom: 0;
+                            vertical-align: middle;
+                            font-weight: bold;
+                        }
+    
+                    .explore_content {
+                        display: inline-block;
+                        text-align: start;
+                        width: 80%;
+                    }
+    
+                        .explore_content p {
+                            display: inline-block;
+                            width: 90%;
+                        }
 
