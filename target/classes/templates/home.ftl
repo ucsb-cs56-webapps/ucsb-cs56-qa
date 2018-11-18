@@ -20,8 +20,8 @@
                 <li class="list-group-item">Acceptance Rate: 100%</li>
             </ul>
             <div class="card-body">
-                <a href="#" class="card-link">Social Media 1</a>
-                <a href="#" class="card-link">Social Media 2</a>
+                <a href="#" class="card-link">Social Media</a>
+                <a href="#" class="card-link">Social Media</a>
             </div>
         </div>
         <div id="most_recent_q" class="ml-4" style="display: inline-block;">
