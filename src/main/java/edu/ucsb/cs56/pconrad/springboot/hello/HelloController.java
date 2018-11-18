@@ -20,9 +20,9 @@ public class HelloController {
         return "home";
     }
 
-	@RequestMapping("/ask")
-    public String ask() {
-        return "ask";
+	@RequestMapping("/questions")
+    public String questions() {
+        return "questions";
     }
 
     @RequestMapping("/profile")
