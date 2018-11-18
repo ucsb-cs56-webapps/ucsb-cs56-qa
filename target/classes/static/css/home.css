@@ -15,6 +15,7 @@
         border: 2px solid white;
         border-radius: 1rem;
         width: 36rem;
+        height: 40rem;
         text-align: center;
         overflow: auto;
     }
@@ -31,11 +32,11 @@
 
             #question_box div {
                 display: inline-block;
-                background-color: white;
                 width: 80%;
-                border: 2px solid white;
-                border-radius: 1rem;
                 height: 35%;
+                background-color: white;           
+                border: 2px solid white;
+                border-radius: 1rem;   
                 overflow-x: auto;
             }
 
@@ -48,4 +49,61 @@
         #answers_box {
             width: 100%;
             min-height: 83%;
+            overflow-y: auto;
         }
+
+            .answer_wrapper {
+                display: inline-block;
+                width: 90%;
+                height: 6rem;
+                background-color: aliceblue;
+                border: 1px solid black;
+                border-radius: 1rem;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+
+            .answer_wrapper:first-of-type {
+                background-color: rgb(194, 247, 134);
+            }
+
+                .answer_header {             
+                    text-align: start;
+                }
+
+                    .answer_header img {
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+
+                    .answer_header h6 {
+                        display: inline-block;
+                        margin-bottom: 0;
+                        vertical-align: middle;
+                        font-weight: bold;
+                    }
+
+                    .answer_header .vote {
+                        border: none;
+                        display: inline-block;
+                        margin-bottom: 0;
+                        vertical-align: middle;
+                    }
+
+                        .vote p, .vote button {
+                            display: inline-block;
+                            margin-bottom: 0;
+                            vertical-align: middle;
+                        }
+
+                .answer_content {
+                    display: inline-block;
+                    text-align: start;
+                    width: 80%;
+                }
+
+                    .answer_content p {
+                        display: inline-block;
+                        width: 90%;
+                    }
+
