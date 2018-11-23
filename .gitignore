@@ -1,5 +1,8 @@
 .vscode
 
+# Firebase authentication file
+experimental-prj-firebase-adminsdk-9tti7-d4a8c2055b.json
+
 # Compiled class file
 *.class
 

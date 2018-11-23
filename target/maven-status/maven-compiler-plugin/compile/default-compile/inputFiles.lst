@@ -1,7 +1,3 @@
-<<<<<<< HEAD
 /Users/chwxu/Desktop/cs/ucsb-cs56-qa/src/main/java/edu/ucsb/cs56/pconrad/springboot/hello/HelloController.java
+/Users/chwxu/Desktop/cs/ucsb-cs56-qa/src/main/java/edu/ucsb/cs56/pconrad/springboot/hello/DatabaseAPI.java
 /Users/chwxu/Desktop/cs/ucsb-cs56-qa/src/main/java/edu/ucsb/cs56/pconrad/springboot/hello/Application.java
-=======
-/Users/tiangewang/Desktop/Classes/CS_56/ucsb-cs56-qa/src/main/java/edu/ucsb/cs56/pconrad/springboot/hello/Application.java
-/Users/tiangewang/Desktop/Classes/CS_56/ucsb-cs56-qa/src/main/java/edu/ucsb/cs56/pconrad/springboot/hello/HelloController.java
->>>>>>> dc7806ca9cdf2efde4e6fb42ba4b7cbdb0731b2b

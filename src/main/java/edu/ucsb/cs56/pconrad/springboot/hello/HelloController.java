@@ -32,8 +32,11 @@ public class HelloController {
 
     @RequestMapping("/test")
     public String test() {
+        DatabaseAPI.initialize();
+        DatabaseAPI.saveDataDemo();
+        // DatabaseAPI.readDataDemo();
         return "test";
     }
 
-	
+
 }
