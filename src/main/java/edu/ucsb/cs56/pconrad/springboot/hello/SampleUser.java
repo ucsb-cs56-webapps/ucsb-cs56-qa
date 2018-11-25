@@ -10,4 +10,14 @@ public class SampleUser {
         this.birthday = birthday;
     }
 
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[Name: ");
+        sb.append(this.name);
+        sb.append(", Date: ");
+        sb.append(this.birthday);
+        sb.append("]");
+        return sb.toString();
+    }
+
 }

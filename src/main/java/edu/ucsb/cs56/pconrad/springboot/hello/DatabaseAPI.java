@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+// import java.util.concurrent.TimeUnit;
 import java.io.FileInputStream;
 
 import com.google.auth.oauth2.GoogleCredentials;
@@ -57,17 +58,30 @@ public class DatabaseAPI {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("sample");
         DatabaseReference usersRef = ref.child("users");
-        /*ValueEventListener vel = */usersRef.addValueEventListener(new ValueEventListener() {
+        /*ValueEventListener vel = */
+        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                list.add(dataSnapshot.getValue(SampleUser.class));
+                // list.add(dataSnapshot.getValue(SampleUser.class));
+                System.out.println("* " + dataSnapshot);
+
+                if (dataSnapshot != null) {
+                    for (DataSnapshot child: dataSnapshot.getChildren()) {
+                        SampleUser su = child.getValue(SampleUser.class);
+                        System.out.println(su);
+                        list.add(su);
+                    }
+                }
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
+
         System.out.println(list);
+        System.out.println("finished");
         return "result";
     }
 
@@ -78,12 +92,24 @@ public class DatabaseAPI {
         DatabaseReference ref = database.getReference("sample");
         DatabaseReference usersRef = ref.child("users");
 
-        Map<String, SampleUser> users = new HashMap<>();
-        users.put("alanisawesome", new SampleUser("Alan Turing", "June 23, 1912"));
-        users.put("gracehop", new SampleUser("Grace Hopper", "December 9, 1906"));
-        users.put("cs56prof", new SampleUser("Phil Conrad", "???"));
+        usersRef.child("alanisawesome").setValueAsync(new SampleUser("Alan Turing", "June 23, 1912"));
+        usersRef.child("gracehop").setValueAsync(new SampleUser("Grace Hopper", "December 9, 1906"));
+        usersRef.child("gracehop").setValueAsync(new SampleUser("Test Object 00", "01/01/1970"));
+    }
 
-        usersRef.setValueAsync(users);
+}
+
+
+class DatabaseHelper {
+    // stub
+    static void sleep() {
+        /*
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        */
     }
 
 }
