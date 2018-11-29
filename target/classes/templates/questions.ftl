@@ -8,31 +8,29 @@
 </head>
 
 
-<body class="fit-width">
-	<!-- navbar starts -->
-	<#include "./partials/navbar.ftl" />
-    <!-- navbar ends -->
-    
+<body class="body-style">
+
+    <#include "./partials/navbar.ftl" />
     <div class="container">
     	<div class="profile-sidebar">
     		<#include "./partials/profile_card.ftl"/>
     	</div>
     	
-    	<div class="content">
-    		<div id="mainbar" class="askmainbar">
+    	<div class="content justify-start">
+    		<div id="mainbar" >
     			<div class="question-context-title">
     			Ask A Question
     			</div>
     			<form action="" method="post">
   				
-  				<div class="wz-element" style="position: relative;">
+  				<div  style="position: relative;">
   					<div class="form-item">
 	   				<label class="s-label mb4" for="title">Title</label>
 	    			<input type="text" id="title" name="question_title" placeholder="What's your question? Be specific."class="s-input">
 	    			</div>
   				</div>
   
-				<div id="post-editor" class="wz-element" style="position: relative;">
+				<div id="post-editor" style="position: relative;">
 					<label class="s-label mb4" for="input-body">Body</label>
 					<div class="wmd-container">
 					<textarea id="input-body" class="s-input-message" name="post-text"style="opacity: 1; height: 238px;">
@@ -40,7 +38,7 @@
 					</div>
 				</div>
 				
-				<div class="wz-element">
+				<div >
 				<button id="submit-button" class="s-btn" type="submit" tabindex="120" autocomplete="off">
                  Submit Your Question
                 </button>

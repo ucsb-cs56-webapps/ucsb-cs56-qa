@@ -1,4 +1,4 @@
-<div class="card" style="width: 18rem; display: inline-block">
+<div class="card" style="width: 100%; display: inline-block">
     <img class="card-img-top" src="img/placeholder.jpg" alt="Card image cap">
     <div class="card-body">
         <h5 class="card-title">Firstname Lastname</h5>
