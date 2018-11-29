@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 // import java.util.concurrent.TimeUnit;
+import java.util.concurrent.CountDownLatch;
 import java.io.FileInputStream;
 
 import com.google.auth.oauth2.GoogleCredentials;
@@ -17,72 +18,73 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class DatabaseAPI {
-    private static boolean initialized;
-
+    // initialize database access
     static {
-        initialized = false;
+        try {
+            FileInputStream serviceAccount =
+                    new FileInputStream("experimental-prj-firebase-adminsdk-9tti7-d4a8c2055b.json");
+
+            FirebaseOptions options = new FirebaseOptions.Builder()
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .setDatabaseUrl("https://experimental-prj.firebaseio.com")
+                    .build();
+
+            FirebaseApp.initializeApp(options);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    // constructor
+    // constructor is disabled
     private DatabaseAPI() {
         // private
     }
 
-    // initialize database
-    public static void initialize() {
-        if (initialized) {
-            return;
-        }
-        DatabaseAPI.initialized = true;
-        try {
-            FileInputStream serviceAccount =
-             new FileInputStream("src/main/java/edu/ucsb/cs56/pconrad/springboot/hello/experimental-prj-firebase-adminsdk-9tti7-d4a8c2055b.json");
-
-             FirebaseOptions options = new FirebaseOptions.Builder()
-              .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-              .setDatabaseUrl("https://experimental-prj.firebaseio.com")
-              .build();
-
-             FirebaseApp.initializeApp(options);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // use FirebaseDatabase.getInstance() to get access to the database
-    }
-
-    // demo: read data from the database
-    public static String readDataDemo() {
-        final List<SampleUser> list = new ArrayList<>();
-
+    // readData()
+    public static void readData(String path, List<SampleUser> list) {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("sample");
-        DatabaseReference usersRef = ref.child("users");
-        /*ValueEventListener vel = */
-        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference ref = database.getReference(path);
+        CountDownLatch doneSignal = new CountDownLatch(1);
+
+        System.out.println("Before read");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // list.add(dataSnapshot.getValue(SampleUser.class));
-                System.out.println("* " + dataSnapshot);
-
-                if (dataSnapshot != null) {
-                    for (DataSnapshot child: dataSnapshot.getChildren()) {
-                        SampleUser su = child.getValue(SampleUser.class);
-                        System.out.println(su);
-                        list.add(su);
-                    }
+                // System.out.println(dataSnapshot);
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    SampleUser su = child.getValue(SampleUser.class);
+                    // System.out.println(su);
+                    list.add(su);
                 }
-
+                doneSignal.countDown();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getCode());
+                doneSignal.countDown();
             }
         });
-
+        System.out.println("End read");
+        System.out.println("Begin wait");
+        try {
+            doneSignal.await();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        System.out.println("End wait");
         System.out.println(list);
-        System.out.println("finished");
-        return "result";
+    }
+
+    // DEBUG
+    // demo: read data from the database
+    public static void readDataDemo() {
+        final List<SampleUser> list = new ArrayList<>();
+        String path = "sample/users";
+        System.out.println("Before call");
+
+        DatabaseAPI.readData(path, list);
+
+        System.out.println("End call");
     }
 
     // DEBUG
@@ -92,24 +94,9 @@ public class DatabaseAPI {
         DatabaseReference ref = database.getReference("sample");
         DatabaseReference usersRef = ref.child("users");
 
-        usersRef.child("alanisawesome").setValueAsync(new SampleUser("Alan Turing", "June 23, 1912"));
-        usersRef.child("gracehop").setValueAsync(new SampleUser("Grace Hopper", "December 9, 1906"));
-        usersRef.child("gracehop").setValueAsync(new SampleUser("Test Object 00", "01/01/1970"));
-    }
-
-}
-
-
-class DatabaseHelper {
-    // stub
-    static void sleep() {
-        /*
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        */
+        usersRef.child("alanisawesome").setValueAsync(new SampleUser("Alan Turing", "aturing@ucsb.edu"));
+        usersRef.child("gracehop").setValueAsync(new SampleUser("Grace Hopper", "ghopper@ucsb.edu"));
+        usersRef.child("test00").setValueAsync(new SampleUser("Test Object 00", "test00@ucsb.edu"));
     }
 
 }

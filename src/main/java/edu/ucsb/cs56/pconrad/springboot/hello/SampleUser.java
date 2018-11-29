@@ -2,21 +2,32 @@ package edu.ucsb.cs56.pconrad.springboot.hello;
 
 
 public class SampleUser {
-    public String name;
-    public String birthday;
+    private String name;
+    private String email;
 
-    public SampleUser(String name, String birthday) {
-        this.name = name;
-        this.birthday = birthday;
+    public SampleUser() {
+        this.name = null;
+        this.email = null;
     }
+
+    public SampleUser(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public void setName(String name) { this.name = name; }
+    public String getName() { return this.name; }
+
+    public void setEmail(String email) { this.email = email; }
+    public String getEmail() { return this.email; }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("[Name: ");
+        sb.append("(Name: ");
         sb.append(this.name);
-        sb.append(", Date: ");
-        sb.append(this.birthday);
-        sb.append("]");
+        sb.append(", Email: ");
+        sb.append(this.email);
+        sb.append(")");
         return sb.toString();
     }
 
