@@ -30,20 +30,26 @@ public class HelloController {
         return "profile";
     }
 
+    // DEBUG
     @RequestMapping("/test")
     public String test() {
         // DatabaseAPI.saveDataDemo();
         // DatabaseAPI.readDataDemo();
-        User a = new User("u1","u1@ucsb.edu","u001","a0a0a0");
-        DatabaseAPI.createUser(a);
-        User b = new User("u2","u2@ucsb.edu","u002","b0b0b0");
-        DatabaseAPI.createUser(b);
+        // User a = new User("u1","u1@ucsb.edu","u001","a0a0a0");
+        // DatabaseAPI.createUser(a);
+        // User b = new User("u2","u2@ucsb.edu","u002","b0b0b0");
+        // DatabaseAPI.createUser(b);
 
-        a = DatabaseAPI.findUser("u002");
-        b = DatabaseAPI.findUser("u001");
+        // a = DatabaseAPI.findUser("u002");
+        // b = DatabaseAPI.findUser("u001");
+        Question a = new Question("title01","content01","u001");
+        Question b = new Question("title02","content02","u002");
 
-        System.out.println(a);
-        System.out.println(b);
+        DatabaseAPI.composeQuestion(a);
+        DatabaseAPI.composeQuestion(b);
+
+        System.out.println(DatabaseAPI.retrieveUserQuestionList("u001"));
+        System.out.println(DatabaseAPI.retrieveUserQuestionList("u002"));
 
         return "test";
     }
