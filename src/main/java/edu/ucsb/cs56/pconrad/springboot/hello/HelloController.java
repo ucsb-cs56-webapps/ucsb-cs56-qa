@@ -42,14 +42,14 @@ public class HelloController {
 
         // a = DatabaseAPI.findUser("u002");
         // b = DatabaseAPI.findUser("u001");
-        Question a = new Question("title01","content01","u001");
-        Question b = new Question("title02","content02","u002");
+        Answer a = new Answer("2018:11:30:10:18:15_u002","content01","u001");
+        Answer b = new Answer("2018:11:30:10:18:15_u001","content02","u002");
 
-        DatabaseAPI.composeQuestion(a);
-        DatabaseAPI.composeQuestion(b);
+        DatabaseAPI.composeAnswer(a);
+        DatabaseAPI.composeAnswer(b);
 
-        System.out.println(DatabaseAPI.retrieveUserQuestionList("u001"));
-        System.out.println(DatabaseAPI.retrieveUserQuestionList("u002"));
+        // System.out.println(DatabaseAPI.retrieveUserQuestionList("u001"));
+        // System.out.println(DatabaseAPI.retrieveUserQuestionList("u002"));
 
         return "test";
     }

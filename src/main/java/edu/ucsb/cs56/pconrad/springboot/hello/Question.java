@@ -25,7 +25,7 @@ class Question {
         // generate create time
         this.timeCreate = (new SimpleDateFormat("yyyy:MM:dd:HH:mm:ss")).format(new Date());
         // generate unique id
-        this.qid = timeCreate + "_" + askerid;
+        this.qid = this.timeCreate + "_" + askerid;
     }
 
     public void setQid(String qid) { this.qid = qid; }

@@ -18,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class DatabaseAPI {
-    private static final String authFileName = "experimental-prj-firebase-adminsdk-9tti7-5577b956fb.json";
+    private static final String authFileName = "experimental-prj-firebase-adminsdk.json";
 
     // initialize database access
     static {
@@ -91,19 +91,20 @@ public class DatabaseAPI {
         return target;
     }
 
-    // TEST
+    // DONE
     // composeQuestion()
     public static boolean composeQuestion(Question q) {
-        // TODO
         DatabaseReference qref = DatabaseAPI.database.getReference("questions");
         DatabaseReference uqlref = DatabaseAPI.database.getReference("user_question_lists");
+
         qref.child(q.getQid()).setValueAsync(q);
         uqlref.child(q.getAskerid()).child(q.getTimeCreate()).setValueAsync(q.getQid());
+
         return true;
     }
 
-    // TEST
-    // findQuestion
+    // DONE
+    // findQuestion()
     public static Question findQuestion(String qid) {
         DatabaseReference ref = DatabaseAPI.database.getReference("questions").child(qid);
         CountDownLatch doneSignal = new CountDownLatch(1);
@@ -139,7 +140,7 @@ public class DatabaseAPI {
         return target;
     }
 
-    // TODO
+    // DONE
     // retrieveUserQuestionList()
     public static List<String> retrieveUserQuestionList(String uid) {
         DatabaseReference ref = DatabaseAPI.database.getReference("user_question_lists").child(uid);
@@ -176,7 +177,58 @@ public class DatabaseAPI {
         return qids;
     }
 
+    // TODO
+    // composeAnswer()
+    public static boolean composeAnswer(Answer a) {
+        DatabaseReference aref = DatabaseAPI.database.getReference("answers");
+        DatabaseReference ualref = DatabaseAPI.database.getReference("user_answer_lists");
+        DatabaseReference qalref = DatabaseAPI.database.getReference("question_answer_lists");
 
+        aref.child(a.getAid()).setValueAsync(a);
+        ualref.child(a.getAnswererid()).child(a.getTimeCreate()).setValueAsync(a.getAid());
+        qalref.child(a.getQid()).child(a.getTimeCreate()).setValueAsync(a.getAid());
+
+        return true;
+    }
+
+    // TODO
+    // findAnswer()
+    public static Answer findAnswer(String aid) {
+        DatabaseReference ref = DatabaseAPI.database.getReference("answers").child(aid);
+        CountDownLatch doneSignal = new CountDownLatch(1);
+        List<Answer> temp = new ArrayList<>();
+
+        System.out.println("Before read");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Answer target = dataSnapshot.getValue(Answer.class);
+                if (target != null)
+                    temp.add(target);
+                doneSignal.countDown();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+                doneSignal.countDown();
+            }
+        });
+        System.out.println("End read");
+        System.out.println("Begin wait");
+        try {
+            doneSignal.await();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        System.out.println("End wait");
+
+        Answer target = null;
+        if (temp.size() > 0)
+            target = temp.get(0);
+        return target;
+    }
+
+    /* DEBUG
     // DEBUG
     // demo: read data from the database
     public static void readDataDemo() {
@@ -235,5 +287,5 @@ public class DatabaseAPI {
         System.out.println("End wait");
         System.out.println(list);
     }
-
+    */
 }
