@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class DatabaseAPI {
+
     // initialize database access
     static {
         try {
@@ -33,17 +34,20 @@ public class DatabaseAPI {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
+    private static final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
 
     // constructor is disabled
     private DatabaseAPI() {
         // private
     }
 
+    // DEBUG
     // readData()
     public static void readData(String path, List<SampleUser> list) {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference(path);
+        DatabaseReference ref = DatabaseAPI.database.getReference(path);
         CountDownLatch doneSignal = new CountDownLatch(1);
 
         System.out.println("Before read");
@@ -73,6 +77,52 @@ public class DatabaseAPI {
         }
         System.out.println("End wait");
         System.out.println(list);
+    }
+
+    // createUser()
+    public static boolean createUser(User user) {
+        // check if the userid already exists
+        if (DatabaseAPI.findUser(user.getUserid()) != null) { return false; }
+        DatabaseReference ref = DatabaseAPI.database.getReference("users");
+        ref.child(user.getUserid()).setValueAsync(user);
+        return true;
+    }
+
+    // findUser()
+    public static User findUser(String userid) {
+        DatabaseReference ref = DatabaseAPI.database.getReference("users").child(userid);
+        CountDownLatch doneSignal = new CountDownLatch(1);
+        List<User> temp = new ArrayList<>();
+
+        System.out.println("Before read");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // System.out.println(dataSnapshot);
+                User target = dataSnapshot.getValue(User.class);
+                if (target != null)
+                    temp.add(target);
+                doneSignal.countDown();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+                doneSignal.countDown();
+            }
+        });
+        System.out.println("End read");
+        System.out.println("Begin wait");
+        try {
+            doneSignal.await();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        System.out.println("End wait");
+
+        User target = null;
+        if (temp.size() > 0)
+            target = temp.get(0);
+        return target;
     }
 
     // DEBUG

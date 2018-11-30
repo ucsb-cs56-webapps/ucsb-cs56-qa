@@ -32,8 +32,19 @@ public class HelloController {
 
     @RequestMapping("/test")
     public String test() {
-        DatabaseAPI.saveDataDemo();
-        DatabaseAPI.readDataDemo();
+        // DatabaseAPI.saveDataDemo();
+        // DatabaseAPI.readDataDemo();
+        User a = new User("u1","u1@ucsb.edu","u001","a0a0a0");
+        DatabaseAPI.createUser(a);
+        User b = new User("u2","u2@ucsb.edu","u002","b0b0b0");
+        DatabaseAPI.createUser(b);
+
+        a = DatabaseAPI.findUser("u002");
+        b = DatabaseAPI.findUser("u001");
+
+        System.out.println(a);
+        System.out.println(b);
+
         return "test";
     }
 
