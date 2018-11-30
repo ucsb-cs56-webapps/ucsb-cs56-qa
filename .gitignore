@@ -1,4 +1,6 @@
 .vscode
+bin/
+target/
 
 # Compiled class file
 *.class
@@ -23,4 +25,4 @@
 *.zip
 *.tar.gz
 *.rar
-bin
+
