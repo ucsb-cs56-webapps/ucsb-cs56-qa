@@ -39,10 +39,6 @@ public class DatabaseAPI {
     }
     private static final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-
-    // constructor is disabled
-    private DatabaseAPI() {}
-
     // DONE
     // createUser()
     public static boolean createUser(User user) {
@@ -60,7 +56,7 @@ public class DatabaseAPI {
         CountDownLatch doneSignal = new CountDownLatch(1);
         List<User> temp = new ArrayList<>();
 
-        System.out.println("Before read");
+        // System.out.println("Before read");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -76,14 +72,14 @@ public class DatabaseAPI {
                 doneSignal.countDown();
             }
         });
-        System.out.println("End read");
-        System.out.println("Begin wait");
+        // System.out.println("End read");
+        // System.out.println("Begin wait");
         try {
             doneSignal.await();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-        System.out.println("End wait");
+        // System.out.println("End wait");
 
         User target = null;
         if (temp.size() > 0)
@@ -110,7 +106,7 @@ public class DatabaseAPI {
         CountDownLatch doneSignal = new CountDownLatch(1);
         List<Question> temp = new ArrayList<>();
 
-        System.out.println("Before read");
+        // System.out.println("Before read");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -125,14 +121,14 @@ public class DatabaseAPI {
                 doneSignal.countDown();
             }
         });
-        System.out.println("End read");
-        System.out.println("Begin wait");
+        // System.out.println("End read");
+        // System.out.println("Begin wait");
         try {
             doneSignal.await();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-        System.out.println("End wait");
+        // System.out.println("End wait");
 
         Question target = null;
         if (temp.size() > 0)
@@ -147,14 +143,14 @@ public class DatabaseAPI {
         CountDownLatch doneSignal = new CountDownLatch(1);
         List<String> qids = new ArrayList<>();
 
-        System.out.println("Before read");
+        // System.out.println("Before read");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println(dataSnapshot);
+                // System.out.println(dataSnapshot);
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     String target = child.getValue(String.class);
-                    System.out.println(target);
+                    // System.out.println(target);
                     qids.add(target);
                 }
                 doneSignal.countDown();
@@ -165,14 +161,14 @@ public class DatabaseAPI {
                 doneSignal.countDown();
             }
         });
-        System.out.println("End read");
-        System.out.println("Begin wait");
+        // System.out.println("End read");
+        // System.out.println("Begin wait");
         try {
             doneSignal.await();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-        System.out.println("End wait");
+        // System.out.println("End wait");
 
         return qids;
     }
@@ -198,7 +194,7 @@ public class DatabaseAPI {
         CountDownLatch doneSignal = new CountDownLatch(1);
         List<Answer> temp = new ArrayList<>();
 
-        System.out.println("Before read");
+        // System.out.println("Before read");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -213,14 +209,14 @@ public class DatabaseAPI {
                 doneSignal.countDown();
             }
         });
-        System.out.println("End read");
-        System.out.println("Begin wait");
+        // System.out.println("End read");
+        // System.out.println("Begin wait");
         try {
             doneSignal.await();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-        System.out.println("End wait");
+        // System.out.println("End wait");
 
         Answer target = null;
         if (temp.size() > 0)
@@ -228,46 +224,22 @@ public class DatabaseAPI {
         return target;
     }
 
-    /* DEBUG
-    // DEBUG
-    // demo: read data from the database
-    public static void readDataDemo() {
-        final List<SampleUser> list = new ArrayList<>();
-        String path = "sample/users";
-        System.out.println("Before call");
-
-        DatabaseAPI.readData(path, list);
-
-        System.out.println("End call");
-    }
-
-    // DEBUG
-    // demo: save data to the database
-    public static void saveDataDemo() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("sample");
-        DatabaseReference usersRef = ref.child("users");
-
-        usersRef.child("alanisawesome").setValueAsync(new SampleUser("Alan Turing", "aturing@ucsb.edu"));
-        usersRef.child("gracehop").setValueAsync(new SampleUser("Grace Hopper", "ghopper@ucsb.edu"));
-        usersRef.child("test00").setValueAsync(new SampleUser("Test Object 00", "test00@ucsb.edu"));
-    }
-
-    // DEBUG
-    // readData()
-    public static void readData(String path, List<SampleUser> list) {
-        DatabaseReference ref = DatabaseAPI.database.getReference(path);
+    // DONE
+    // retrieveUserAnswerList()
+    public static List<String> retrieveUserAnswerList(String uid) {
+        DatabaseReference ref = DatabaseAPI.database.getReference("user_answer_lists").child(uid);
         CountDownLatch doneSignal = new CountDownLatch(1);
+        List<String> aids = new ArrayList<>();
 
-        System.out.println("Before read");
+        // System.out.println("Before read");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // System.out.println(dataSnapshot);
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    SampleUser su = child.getValue(SampleUser.class);
-                    // System.out.println(su);
-                    list.add(su);
+                    String target = child.getValue(String.class);
+                    // System.out.println(target);
+                    aids.add(target);
                 }
                 doneSignal.countDown();
             }
@@ -277,15 +249,56 @@ public class DatabaseAPI {
                 doneSignal.countDown();
             }
         });
-        System.out.println("End read");
-        System.out.println("Begin wait");
+        // System.out.println("End read");
+        // System.out.println("Begin wait");
         try {
             doneSignal.await();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
-        System.out.println("End wait");
-        System.out.println(list);
+        // System.out.println("End wait");
+
+        return aids;
     }
-    */
+
+    // DONE
+    // retrieveQuestionAnswerList()
+    public static List<String> retrieveQuestionAnswerList(String qid) {
+        DatabaseReference ref = DatabaseAPI.database.getReference("question_answer_lists").child(qid);
+        CountDownLatch doneSignal = new CountDownLatch(1);
+        List<String> aids = new ArrayList<>();
+
+        // System.out.println("Before read");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // System.out.println(dataSnapshot);
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    String target = child.getValue(String.class);
+                    // System.out.println(target);
+                    aids.add(target);
+                }
+                doneSignal.countDown();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+                doneSignal.countDown();
+            }
+        });
+        // System.out.println("End read");
+        // System.out.println("Begin wait");
+        try {
+            doneSignal.await();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        // System.out.println("End wait");
+
+        return aids;
+    }
+
+
+    // constructor is disabled
+    private DatabaseAPI() {}
 }
