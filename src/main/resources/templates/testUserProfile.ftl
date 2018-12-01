@@ -24,9 +24,9 @@
     -->
 
     <h2>Retrieved User Profile:</h2>
-    <p>- Name = ${name}</p>
-    <p>- UID = ${uid}</p>
-    <p>- Email = ${email}</p>
+    <p>Name = ${name}</p>
+    <p>UID = ${uid}</p>
+    <p>Email = ${email}</p>
 
     <h1>End</h1>
 </body>
