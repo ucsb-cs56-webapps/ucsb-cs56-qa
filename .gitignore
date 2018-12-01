@@ -3,6 +3,9 @@
 # Firebase authentication file
 experimental-prj-firebase-adminsdk.json
 
+# compile results
+/target
+
 # Compiled class file
 *.class
 
