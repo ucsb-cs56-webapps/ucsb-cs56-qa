@@ -47,6 +47,7 @@ public class HelloController {
         return "profile";
     }
 
+<<<<<<< HEAD
     // DEBUG
     @RequestMapping(value = "/create_user", method = RequestMethod.GET)
     public ModelAndView testCreateUser() {
@@ -89,4 +90,17 @@ public class HelloController {
     // DEBUG
     // @RequestMapping
 
+=======
+    @RequestMapping("/question-page")
+    public String questionpage() {
+        return "question-page";
+    }
+
+    @RequestMapping("question-list")
+    public String questionlist(){
+        return "question-list";
+    }
+
+	
+>>>>>>> a33e8d3cac7484a831d80799c0a4a4a61960bedb
 }
