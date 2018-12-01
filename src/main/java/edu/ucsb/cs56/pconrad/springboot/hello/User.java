@@ -33,6 +33,13 @@ public class User {
     public void setPassword(String password) { this.password = password; }
     public String getPassword() { return this.password; }
 
+    public boolean hasAllField() {
+        return (this.name.compareTo("") != 0
+                && this.email.compareTo("") != 0
+                && this.userid.compareTo("") != 0
+                && this.password.compareTo("") != 0);
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("(name: ");

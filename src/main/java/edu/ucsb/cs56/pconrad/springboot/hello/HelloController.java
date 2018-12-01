@@ -56,7 +56,9 @@ public class HelloController {
     // DEBUG
     @RequestMapping(value = "/create_user", method = RequestMethod.POST)
     public String createUser(@ModelAttribute("user") User user, BindingResult result, ModelMap model) {
-        if (result.hasErrors()) { return "error"; }
+        if (result.hasErrors() || !user.hasAllField()) {
+            return "redirect:/create_user";
+        }
 
         System.out.println(user);
 
@@ -74,6 +76,9 @@ public class HelloController {
     @RequestMapping(value="/testuid={uid}", method = RequestMethod.GET)
     public String testUserProfile(@PathVariable("uid") String uid, Model model) {
         User user = DatabaseAPI.findUser(uid);
+
+        if (user == null) { return "redirect:/"; }
+
         model.addAttribute("name", user.getName());
         model.addAttribute("uid", user.getUserid());
         model.addAttribute("email", user.getEmail());
