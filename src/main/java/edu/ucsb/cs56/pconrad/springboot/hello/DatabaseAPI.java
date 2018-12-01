@@ -5,9 +5,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-// import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.CountDownLatch;
 import java.io.FileInputStream;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
@@ -76,7 +78,7 @@ public class DatabaseAPI {
         // System.out.println("End read");
         // System.out.println("Begin wait");
         try {
-            doneSignal.await();
+            doneSignal.await(45, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
@@ -125,7 +127,7 @@ public class DatabaseAPI {
         // System.out.println("End read");
         // System.out.println("Begin wait");
         try {
-            doneSignal.await();
+            doneSignal.await(45, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
@@ -165,7 +167,7 @@ public class DatabaseAPI {
         // System.out.println("End read");
         // System.out.println("Begin wait");
         try {
-            doneSignal.await();
+            doneSignal.await(45, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
@@ -213,7 +215,7 @@ public class DatabaseAPI {
         // System.out.println("End read");
         // System.out.println("Begin wait");
         try {
-            doneSignal.await();
+            doneSignal.await(45, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
@@ -253,7 +255,7 @@ public class DatabaseAPI {
         // System.out.println("End read");
         // System.out.println("Begin wait");
         try {
-            doneSignal.await();
+            doneSignal.await(45, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
@@ -290,7 +292,7 @@ public class DatabaseAPI {
         // System.out.println("End read");
         // System.out.println("Begin wait");
         try {
-            doneSignal.await();
+            doneSignal.await(45, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
@@ -327,7 +329,7 @@ public class DatabaseAPI {
         // System.out.println("End read");
         // System.out.println("Begin wait");
         try {
-            doneSignal.await();
+            doneSignal.await(45, TimeUnit.SECONDS);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
