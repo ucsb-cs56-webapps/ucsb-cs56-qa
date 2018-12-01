@@ -30,17 +30,18 @@
         </table>
     </form> -->
 
-    <form action="/create_user" method="post">
+    <form id="submit_form" action="/create_user" method="post">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name">
+        <input type="text" name="name">
         <label for="email">Email</label>
-        <input type="text" id="email" name="email">
+        <input type="text" name="email">
         <label for="userid">UserID</label>
         <input type="text" name="userid">
         <label for="password">Password</label>
-        <input type="text" name="password">
+        <input type="password" name="password">
         <button type="submit">Submit!</button>
     </form>
+
 
 </body>
 </html>

@@ -103,7 +103,7 @@ public class HelloController {
         model.addAttribute("uid", user.getUserid());
         model.addAttribute("email", user.getEmail());
 
-        return "testUserProfile";
+        return "redirect:/testuid=" + user.getUserid();
     }
 
 
