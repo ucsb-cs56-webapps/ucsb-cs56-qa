@@ -1,7 +1,19 @@
 package edu.ucsb.cs56.pconrad.springboot.hello;
 
+import java.net.URI;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
 public class HelloController {
@@ -33,6 +45,7 @@ public class HelloController {
     // DEBUG
     @RequestMapping("/test")
     public String test() {
+        /* DEBUG
         // DatabaseAPI.saveDataDemo();
         // DatabaseAPI.readDataDemo();
 
@@ -58,9 +71,34 @@ public class HelloController {
         System.out.println(DatabaseAPI.retrieveUserAnswerList("u001"));
 
         System.out.println(DatabaseAPI.retrieveQuestionAnswerList("2018:11:30:10:18:15_u001"));
+        */
+        System.out.println(DatabaseAPI.retrieveQuestionList());
 
         return "test";
     }
 
+    // DEBUG
+    @RequestMapping(value="/testuid={uid}", method = RequestMethod.GET)
+    public String testUserProfile(@PathVariable("uid") String uid, Model model) {
+        User user = DatabaseAPI.findUser(uid);
+        /*
+        String template = "/test/uid={uid}";
+        UriComponents uc = UriComponentsBuilder.fromUriString(template).build();
+        URI location = uc.toUri();
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setLocation(location);
+        responseHeaders.set("name", user.getName());
+        responseHeaders.set("uid", user.getUserid());
+        responseHeaders.set("email", user.getEmail());
+        return new ResponseEntity<String>(
+                getTemplate(),
+                responseHeaders);
+        */
+        model.addAttribute("name", user.getName());
+        model.addAttribute("uid", user.getUserid());
+        model.addAttribute("email", user.getEmail());
+
+        return "testUserProfile";
+    }
 
 }

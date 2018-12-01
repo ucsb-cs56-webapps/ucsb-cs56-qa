@@ -1,6 +1,7 @@
 package edu.ucsb.cs56.pconrad.springboot.hello;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -35,8 +36,8 @@ public class DatabaseAPI {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
     private static final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     // DONE
@@ -173,7 +174,7 @@ public class DatabaseAPI {
         return qids;
     }
 
-    // TODO
+    // DONE
     // composeAnswer()
     public static boolean composeAnswer(Answer a) {
         DatabaseReference aref = DatabaseAPI.database.getReference("answers");
@@ -187,7 +188,7 @@ public class DatabaseAPI {
         return true;
     }
 
-    // TODO
+    // DONE
     // findAnswer()
     public static Answer findAnswer(String aid) {
         DatabaseReference ref = DatabaseAPI.database.getReference("answers").child(aid);
@@ -298,6 +299,43 @@ public class DatabaseAPI {
         return aids;
     }
 
+    // DONE
+    // retrieveQuestionList()
+    public static List<Question> retrieveQuestionList() {
+        DatabaseReference ref = DatabaseAPI.database.getReference("questions");
+        List<Question> questionList = new ArrayList<>();
+        CountDownLatch doneSignal = new CountDownLatch(1);
+
+        // System.out.println("Before read");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // System.out.println(dataSnapshot);
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Question target = child.getValue(Question.class);
+                    // System.out.println(target);
+                    questionList.add(target);
+                }
+                doneSignal.countDown();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+                doneSignal.countDown();
+            }
+        });
+        // System.out.println("End read");
+        // System.out.println("Begin wait");
+        try {
+            doneSignal.await();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        // System.out.println("End wait");
+
+        Collections.reverse(questionList);
+        return questionList;
+    }
 
     // constructor is disabled
     private DatabaseAPI() {}
