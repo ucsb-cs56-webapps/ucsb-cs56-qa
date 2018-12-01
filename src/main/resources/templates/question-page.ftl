@@ -3,7 +3,7 @@
 
 <!-- start head -->
 <head>
-	<title>Submit a Question</title>
+	<title>Submit an Answer</title>
 	<link href="css/submit_question.css" rel="stylesheet" />
 	<#include "./partials/head.ftl" /> 
 </head>
@@ -30,7 +30,7 @@
 		    			<div class="vote-cell">
     								<#include "./partials/vote_button.ftl" /> 
     						</div>
-		    			<div class="post-text wmd-container border4 margin-top5">
+		    			<div class="post-text wmd-container border4-ffc20e margin-top5">
 		    				
 		    				
 		    				<p>
@@ -58,7 +58,7 @@
     						
     						
     						
-    						<div class="post-text wmd-container border4 margin-top5">
+    						<div class="post-text wmd-container border4-5893d4 margin-top5">
     							<div class="post-user">
     								<#include "./partials/post-user.ftl" /> 
     							</div>
@@ -84,7 +84,7 @@
     						
     						
     						
-    						<div class="post-text wmd-container border4 margin-top5">
+    						<div class="post-text wmd-container border4-5893d4 margin-top5">
     							<div class="post-user">
     								<#include "./partials/post-user.ftl" /> 
     							</div>

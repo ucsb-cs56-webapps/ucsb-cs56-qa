@@ -35,5 +35,10 @@ public class HelloController {
         return "question-page";
     }
 
+    @RequestMapping("question-list")
+    public String questionlist(){
+        return "question-list";
+    }
+
 	
 }

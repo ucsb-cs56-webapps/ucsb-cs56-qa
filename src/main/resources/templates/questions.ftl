@@ -16,12 +16,17 @@
     		<#include "./partials/profile_card.ftl"/>
     	</div>
     	
-    	<div class="content justify-start">
+    	<div class="content justify-center">
     		<div id="mainbar" >
-    			<div class="question-context-title">
-    			Ask A Question
+    			
+          <div class="question-context-title">
+    			<div>Ask A Question</div>
+
+          <a href="/question-list">View all the questions</a>
+
     			</div>
-    			<form action="" method="post">
+    			
+          <form action="" method="post">
   				
   				<div  style="position: relative;">
   					<div class="form-item">
@@ -41,11 +46,13 @@
 				<div >
 				<button id="submit-button" class="s-btn" type="submit" tabindex="120" autocomplete="off">
                  Submit Your Question
-                </button>
-                </div>
+        </button>
+        </div>
+
+
 				
 				</form>
-    		</div>
+
 
     		<div id="sidebar" class=asksidebar>
 
@@ -53,5 +60,6 @@
     	</div>
   
     </div>
+  </div>
 </body>
 </html>
