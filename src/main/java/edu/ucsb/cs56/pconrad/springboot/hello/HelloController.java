@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -74,36 +77,49 @@ public class HelloController {
 
         System.out.println(DatabaseAPI.retrieveQuestionAnswerList("2018:11:30:10:18:15_u001"));
         */
-        System.out.println(DatabaseAPI.retrieveQuestionList());
-
+        // System.out.println(DatabaseAPI.retrieveQuestionList());
         return "test";
     }
 
-    // DEBUG
-    @PostMapping()
+
 
     // DEBUG
-    @RequestMapping(value="/testuid={uid}", method = RequestMethod.GET)
-    public String testUserProfile(@PathVariable("uid") String uid, Model model) {
-        User user = DatabaseAPI.findUser(uid);
-        /*
-        String template = "/test/uid={uid}";
-        UriComponents uc = UriComponentsBuilder.fromUriString(template).build();
-        URI location = uc.toUri();
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setLocation(location);
-        responseHeaders.set("name", user.getName());
-        responseHeaders.set("uid", user.getUserid());
-        responseHeaders.set("email", user.getEmail());
-        return new ResponseEntity<String>(
-                getTemplate(),
-                responseHeaders);
-        */
+    @RequestMapping(value = "/create_user", method = RequestMethod.GET)
+    public ModelAndView testCreateUser() {
+        return new ModelAndView("testCreateUser", "user", new User());
+    }
+
+    // DEBUG
+    @RequestMapping(value = "/create_user", method = RequestMethod.POST)
+    public String createUser(@ModelAttribute("user") User user, BindingResult result, ModelMap model) {
+        if (result.hasErrors()) { return "error"; }
+
+        System.out.println(user);
+
+        DatabaseAPI.createUser(user);
+
+        user = DatabaseAPI.findUser(user.getUserid());
         model.addAttribute("name", user.getName());
         model.addAttribute("uid", user.getUserid());
         model.addAttribute("email", user.getEmail());
 
         return "testUserProfile";
     }
+
+
+
+    // DEBUG
+    @RequestMapping(value="/testuid={uid}", method = RequestMethod.GET)
+    public String testUserProfile(@PathVariable("uid") String uid, Model model) {
+        User user = DatabaseAPI.findUser(uid);
+        model.addAttribute("name", user.getName());
+        model.addAttribute("uid", user.getUserid());
+        model.addAttribute("email", user.getEmail());
+
+        return "testUserProfile";
+    }
+
+    // DEBUG
+    // @RequestMapping
 
 }
