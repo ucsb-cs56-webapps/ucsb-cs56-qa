@@ -24,7 +24,9 @@
     				<div class="post-layout">
 	    				<!-- Here is the question title -->
 		    			<div class="question-context-title btm_border">
-		    			Here is the question title
+		    			<div>Here is the question title</div>
+
+                        <a href="/question-list" float="right">View all the questions</a>
 		    			</div>
 		    			<!-- Here is the question body -->
 		    			<div class="vote-cell">

@@ -20,11 +20,14 @@
     		<div id="mainbar-question">
     			
     			<!-- Here is the question section -->
-    			<div id="question" class="btm_border wmd-container">
+    			
+                <div id="question" class="btm_border wmd-container">
     				<div class="post-layout">
 	    				<!-- Here is the question title -->
 		    			<div class="question-context-title btm_border">
-		    			Here is the question title
+		    			<div>${question.getTitle()}</div>
+
+                        <a href="/question-list" float="right">View all the questions</a>
 		    			</div>
 		    			<!-- Here is the question body -->
 		    			<div class="vote-cell">
@@ -34,7 +37,7 @@
 		    				
 		    				
 		    				<p>
-		    					test question body
+		    					${question.getContent()}
 		    				</p>
 		    			
 		    			</div>
@@ -49,7 +52,8 @@
 
     				<label id="answer-header" class="s-label mb4" for="input-answer">2 Answer</label>
     				
-    				<div id="answer-1" class="answers">
+                    <#list answers as answer>
+    				<div id="answer-${answer?counter}" class="answers">
     					<div class="post-layout wmd-container">
 
     						<div class="vote-cell">
@@ -60,47 +64,22 @@
     						
     						<div class="post-text wmd-container border4-5893d4 margin-top5">
     							<div class="post-user">
-    								<#include "./partials/post-user.ftl" /> 
+                                    <img class="ml-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHaSURBVEhLYxgFowAvcPIOtnX3DZ/lGxKzx9UnbKarZ5A1VIo6wMM/rNfNN/Rvc0ffn0VLV/1vbu/94+oT+tfDL7wHqoQy4OwdEu3pH/Hr5q07/5HBjVu3/3sGRPx28g6JgColH/gERV9asnzNP6jZKAAk7hMcfQGqlHwADKZfFy9fhRqLCkDibj5hP6FKyQfAIHl36MhxqLGo4CBQ3DMw8h1UKfnAMyByUVF53Y9//1BDDMQvLKv94RUQsRCqlHzg5h8u6+4X/r6xtfvni5evwBa8ePHqP4gPEgdGvDRUKWXA2TNcDeijEy7eIf89/CL+gGjvwKijLt5BqlAl1AMuPqFyjl7BViAaKkR1wAgKOhevcE0QDeJDhKkAnH0CTYFBtMLDP/wLKJhgGMR39wtbCpKHKiUd2IeG8rj5hS0CFSd1zZ0/T54+C47w379/g+kTp87+B4mDihegZZONjdNYoVqJAy4uofxeAVEXo5Oyvt9/8BCconABkHx0UuZ3r4DIsyB9UCMIA2DBtyM5s/DH16/foEbhByB1yZkF34FBuAVqBH4ASj1egVE/nz57ATWCOABSD9Ln7BNiCTUKNwgNDWXetnOvG1CfC6n44MGjTiD9UKNGATmAgQEALM3GBzFt50AAAAAASUVORK5CYII=" >
+                                <span>${answeruser.getName()}</span>
+                                <span>${answeruser.getTimeCreate()}</span>
+    								
     							</div>
     							<p>
-    								test post answer 1
+    								${answer.getContent()}
     							</p>
 
     							
     						</div>
-
-    						<!-- Here shows the user who submits this answer -->
-    						<div class="wmd-container">
-    						</div>
+    						
     					</div>
     				</div>
+                    </#list>
 
-    				<div id="answer-2" class="answers">
-    					<div class="post-layout wmd-container">
-
-    						<div class="vote-cell">
-    								<#include "./partials/vote_button.ftl" /> 
-    						</div>
-    						
-    						
-    						
-    						<div class="post-text wmd-container border4-5893d4 margin-top5">
-    							<div class="post-user">
-    								<#include "./partials/post-user.ftl" /> 
-    							</div>
-    							
-    							<p>
-    								test post answer 2
-    							</p>
-    							
-
-    						</div>
-
-    						<!-- Here shows the user who submits this answer -->
-    						<div class="wmd-container">
-    						</div>
-    					</div>
-    				</div>
 
     				<!--the answers end-->
     				
