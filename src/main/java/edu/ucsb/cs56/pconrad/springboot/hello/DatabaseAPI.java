@@ -43,6 +43,15 @@ public class DatabaseAPI {
     private static final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     // DONE
+    // requestLogin()
+    public static boolean requestLogin(User user) {
+        User corrus = DatabaseAPI.findUser(user.getUserid());
+        if (corrus == null) { return false; }
+        String corrpw = corrus.getPassword();
+        return user.getPassword().compareTo(corrpw) == 0;
+    }
+
+    // DONE
     // createUser()
     public static boolean createUser(User user) {
         // check if the userid already exists

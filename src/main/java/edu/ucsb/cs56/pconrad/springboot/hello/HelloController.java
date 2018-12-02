@@ -5,32 +5,50 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+// import javax.servlet.http.Cookie;
+// import javax.servlet.http.HttpServletResponse;
+// import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+// import org.springframework.http.HttpEntity;
+// import org.springframework.http.HttpHeaders;
+// import org.springframework.http.HttpStatus;
+// import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.CookieValue;
+// import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
+// import org.springframework.web.util.UriComponents;
+// import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
 public class HelloController {
     // DONE
-    @RequestMapping("/")
+    @RequestMapping(value="/", method=RequestMethod.GET)
     public String login() {
         return "login";
+    }
+
+    // TODO
+    @RequestMapping(value="/login", method=RequestMethod.POST)
+    public String requestLogin(@ModelAttribute("loginuser") User user, Model model) {
+        if (user == null) {
+            return "login";
+        }
+        // System.out.println(user);
+        if (!user.hasUPfield() || !DatabaseAPI.requestLogin(user)) {
+            return "login";
+        }
+        // System.out.println(user.getUserid());
+        return "redirect:/testuid=" + user.getUserid();
     }
 
     // TODO
@@ -54,7 +72,7 @@ public class HelloController {
     // TODO
     @RequestMapping(value="/ask-question", method=RequestMethod.POST)
     public ModelAndView questions(@ModelAttribute("newquestion") Question question, Model model) {
-        System.out.println(question);
+        // System.out.println(question);
         if (!question.hasTCAfield()) {
             return new ModelAndView("redirect:/ask-question");
         }
@@ -112,7 +130,7 @@ public class HelloController {
     }
 
     // DONE
-    @RequestMapping(value={"/question-list", "/question-page"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/question", "/question-list", "/question-page"}, method=RequestMethod.GET)
     public ModelAndView questionList() {
         List<Question> questions = DatabaseAPI.retrieveQuestionList();
 
