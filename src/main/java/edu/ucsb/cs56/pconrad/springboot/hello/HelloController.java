@@ -45,10 +45,24 @@ public class HelloController {
         return "home";
     }
 
-    // TODO
-	@RequestMapping("/ask-question")
+    // DONE
+	@RequestMapping(value="/ask-question", method=RequestMethod.GET)
     public String questions() {
         return "ask-question";
+    }
+
+    // TODO
+    @RequestMapping(value="/ask-question", method=RequestMethod.POST)
+    public ModelAndView questions(@ModelAttribute("newquestion") Question question, Model model) {
+        System.out.println(question);
+        if (!question.hasTCAfield()) {
+            return new ModelAndView("redirect:/ask-question");
+        }
+
+        Question newQuestion = new Question(question.getTitle(), question.getContent(), question.getAskerid());
+        DatabaseAPI.composeQuestion(newQuestion);
+
+        return new ModelAndView("redirect:/question-id=" + question.getQid());
     }
 
     // TODO
@@ -89,7 +103,7 @@ public class HelloController {
         if (!answer.hasQCAfield()) {
             return new ModelAndView("redirect:/question-id=" + qid);
         }
-        System.out.println(answer);
+        // System.out.println(answer);
 
         Answer newAnswer = new Answer(qid, answer.getContent(), answer.getAnswererid());
         DatabaseAPI.composeAnswer(newAnswer);

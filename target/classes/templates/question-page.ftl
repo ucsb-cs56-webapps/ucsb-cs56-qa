@@ -114,16 +114,8 @@
 	    		</div>
     			<!-- the answer section ends-->
 
-
-
-
-
-
-
-
     		</div>
     	</div>
     </div>
-
 
 </body>

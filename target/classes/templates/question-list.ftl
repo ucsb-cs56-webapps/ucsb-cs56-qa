@@ -22,7 +22,7 @@
     				<div class="question-context-title btm_border">
 		    			<div>All questions</div>
 
-		    			<a href="/questions" float="right">Ask a question</a>
+		    			<a href="/ask-question" float="right">Ask a question</a>
 		    		</div>
 
 

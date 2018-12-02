@@ -150,7 +150,7 @@ textarea{
     flex-direction: column;
     resize: auto;
     cursor: text;
-    white-space: pre-wrap;
+    white-space: initial;
     overflow-wrap: break-word;
     border-width: 1px;
     border-style: solid;

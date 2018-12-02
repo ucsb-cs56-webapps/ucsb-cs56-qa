@@ -27,18 +27,25 @@
     			</div>
 
           <form action="" method="post">
-
   				<div  style="position: relative;">
   					<div class="form-item">
 	   				<label class="s-label mb4" for="title">Title</label>
-	    			<input type="text" id="title" name="question_title" placeholder="What's your question? Be specific."class="s-input">
+	    			<input type="text" id="title" name="title" placeholder="What's your question? Be specific."class="s-input">
 	    			</div>
   				</div>
 
 				<div id="post-editor" style="position: relative;">
 					<label class="s-label mb4" for="input-body">Body</label>
 					<div class="wmd-container">
-					<textarea id="input-body" class="s-input-message" name="post-text"style="opacity: 1; height: 238px;">
+					<textarea id="input-body" class="s-input-message" name="content"style="opacity: 1; height: 238px;">
+					</textarea>
+					</div>
+				</div>
+
+				<div id="post-uid" class="margin-top" style="position: relative;">
+					<label class="s-label mb4" for="input-answer">Your UserID</label>
+					<div class="wmd-container">
+					<textarea id="input-uid" class="s-input-message" name="askerid"style="opacity: 1; height: 38px;">
 					</textarea>
 					</div>
 				</div>
