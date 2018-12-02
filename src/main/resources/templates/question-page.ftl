@@ -14,7 +14,6 @@
 	<#include "./partials/navbar.ftl" />
     <!-- navbar ends -->
 
-
     <div class="container">
     	<div class="content justify-center">
     		<div id="mainbar-question">
@@ -30,9 +29,9 @@
                         <a href="/question-list" float="right">View all the questions</a>
 		    			</div>
 		    			<!-- Here is the question body -->
-		    			<div class="vote-cell">
-    								<#include "./partials/vote_button.ftl" />
-    						</div>
+		    			<!-- <div class="vote-cell">
+								<#include "./partials/vote_button.ftl" />
+						</div> -->
 		    			<div class="post-text wmd-container border4-ffc20e margin-top5">
 
 
@@ -56,11 +55,9 @@
     				<div id="answer-${answer?counter}" class="answers">
     					<div class="post-layout wmd-container">
 
-    						<div class="vote-cell">
+    						<!-- <div class="vote-cell">
     								<#include "./partials/vote_button.ftl" />
-    						</div>
-
-
+    						</div> -->
 
     						<div class="post-text wmd-container border4-5893d4 margin-top5">
     							<div class="post-user">
@@ -72,10 +69,7 @@
     							<p>
     								${answer[2]}
     							</p>
-
-
     						</div>
-
     					</div>
     				</div>
                     </#list>

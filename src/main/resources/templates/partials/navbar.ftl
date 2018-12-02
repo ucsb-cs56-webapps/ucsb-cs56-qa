@@ -18,6 +18,5 @@
     <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search">
     <button class="btn btn-success my-2 my-sm-0" type="submit"><img src="img/search.png"></button>
   </form>
-  <a href="#" class="btn btn-info my-2 my-sm-0 ml-2 justify-content-end"><img src="img/logout.png"></a>
+  <a href="/" class="btn btn-info my-2 my-sm-0 ml-2 justify-content-end"><img src="img/logout.png"></a>
 </nav>
-
