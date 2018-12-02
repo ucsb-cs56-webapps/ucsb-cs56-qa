@@ -7,9 +7,10 @@
 
   <!-- Links -->
   <div class="navbar-nav">
-    <a class="nav-item nav-link" href="/home">Home</a>
-    <a class="nav-item nav-link" href="/questions">Questions</a>
-    <a class="nav-item nav-link" href="/profile">Profile</a>
+    <!-- <a class="nav-item nav-link" href="/home">Home</a> -->
+    <a class="nav-item nav-link" href="/question">Questions</a>
+    <a class="nav-item nav-link" href="/ask-question">Ask a Question</a>
+    <!-- <a class="nav-item nav-link" href="/profile">Profile</a> -->
   </div>
 
   <!-- Search Bar -->

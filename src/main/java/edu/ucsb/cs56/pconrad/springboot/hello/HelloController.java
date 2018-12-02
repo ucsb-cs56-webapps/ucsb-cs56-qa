@@ -37,30 +37,37 @@ public class HelloController {
         return "login";
     }
 
-    // TODO
+    // DONE
     @RequestMapping(value="/login", method=RequestMethod.POST)
     public String requestLogin(@ModelAttribute("loginuser") User user, Model model) {
         if (user == null) {
             return "login";
         }
-        // System.out.println(user);
         if (!user.hasUPfield() || !DatabaseAPI.requestLogin(user)) {
             return "login";
         }
-        // System.out.println(user.getUserid());
-        return "redirect:/testuid=" + user.getUserid();
+        return "redirect:/user-id=" + user.getUserid();
     }
 
-    // TODO
-    @RequestMapping("/register")
-    public String register() {
-        return "register";
+    // DONE
+    @RequestMapping(value = "/create_user", method=RequestMethod.GET)
+    public ModelAndView testCreateUser() {
+        return new ModelAndView("create-user", "user", new User());
     }
 
-    // TODO
-	@RequestMapping("/home")
-    public String home() {
-        return "home";
+    // DONE
+    @RequestMapping(value="/create_user", method=RequestMethod.POST)
+    public String createUser(@ModelAttribute("user") User user, BindingResult result, ModelMap model) {
+        if (result.hasErrors() || !user.hasAllField()) {
+            return "redirect:/create_user";
+        }
+        DatabaseAPI.createUser(user);
+        user = DatabaseAPI.findUser(user.getUserid());
+        model.addAttribute("name", user.getName());
+        model.addAttribute("uid", user.getUserid());
+        model.addAttribute("email", user.getEmail());
+
+        return "redirect:/user-id=" + user.getUserid();
     }
 
     // DONE
@@ -69,24 +76,29 @@ public class HelloController {
         return "ask-question";
     }
 
-    // TODO
+    // DONE
     @RequestMapping(value="/ask-question", method=RequestMethod.POST)
     public ModelAndView questions(@ModelAttribute("newquestion") Question question, Model model) {
-        // System.out.println(question);
         if (!question.hasTCAfield()) {
             return new ModelAndView("redirect:/ask-question");
         }
-
         Question newQuestion = new Question(question.getTitle(), question.getContent(), question.getAskerid());
         DatabaseAPI.composeQuestion(newQuestion);
-
         return new ModelAndView("redirect:/question-id=" + question.getQid());
     }
 
-    // TODO
-    @RequestMapping("/profile")
-    public String profile() {
-        return "profile";
+    // DONE
+    @RequestMapping(value="/user-id={uid}", method=RequestMethod.GET)
+    public String testUserProfile(@PathVariable("uid") String uid, Model model) {
+        // if (uid.equals("")) { return "redirect:/"; }
+        User user = DatabaseAPI.findUser(uid);
+        if (user == null) { return "redirect:/"; }
+
+        model.addAttribute("name", user.getName());
+        model.addAttribute("uid", user.getUserid());
+        model.addAttribute("email", user.getEmail());
+
+        return "user-profile";
     }
 
     // DONE
@@ -95,10 +107,8 @@ public class HelloController {
         if (qid.equals("")) { return new ModelAndView("redirect:/question-list"); }
         Question q = DatabaseAPI.findQuestion(qid);
         if (q == null) { return new ModelAndView("redirect:/question-list"); }
-
         Map<String, Object> params = new HashMap<>();
         params.put("question", q.toStringList());
-
         List<String> answerList = DatabaseAPI.retrieveQuestionAnswerList(qid);
         List<List<String>> as = new ArrayList<List<String>>();
         List<String> us = new ArrayList<>();
@@ -111,7 +121,6 @@ public class HelloController {
         }
         params.put("answers", as);
         params.put("answerer", us);
-
         return new ModelAndView("question-page", params);
     }
 
@@ -121,84 +130,22 @@ public class HelloController {
         if (!answer.hasQCAfield()) {
             return new ModelAndView("redirect:/question-id=" + qid);
         }
-        // System.out.println(answer);
-
         Answer newAnswer = new Answer(qid, answer.getContent(), answer.getAnswererid());
         DatabaseAPI.composeAnswer(newAnswer);
-
         return new ModelAndView("redirect:/question-id=" + qid);
     }
 
     // DONE
-    @RequestMapping(value={"/question", "/question-list", "/question-page"}, method=RequestMethod.GET)
+    @RequestMapping(value={"/question", "/question-list", "/question-page", "/home"}, method=RequestMethod.GET)
     public ModelAndView questionList() {
         List<Question> questions = DatabaseAPI.retrieveQuestionList();
-
         List<List<String>> qs = new ArrayList<List<String>>();
         for (Question q : questions) {
             qs.add(q.toStringList());
         }
-
         Map<String, Object> params = new HashMap<>();
         params.put("questions", qs);
-
         return new ModelAndView("question-list", params);
-    }
-
-
-    /* DEBUG */
-    // DEBUG
-    @RequestMapping(value = "/create_user", method=RequestMethod.GET)
-    public ModelAndView testCreateUser() {
-        return new ModelAndView("testCreateUser", "user", new User());
-    }
-
-    // DEBUG
-    @RequestMapping(value="/create_user", method=RequestMethod.POST)
-    public String createUser(@ModelAttribute("user") User user, BindingResult result, ModelMap model) {
-        if (result.hasErrors() || !user.hasAllField()) {
-            return "redirect:/create_user";
-        }
-
-        // System.out.println(user);
-        DatabaseAPI.createUser(user);
-
-        user = DatabaseAPI.findUser(user.getUserid());
-        model.addAttribute("name", user.getName());
-        model.addAttribute("uid", user.getUserid());
-        model.addAttribute("email", user.getEmail());
-
-        return "redirect:/testuid=" + user.getUserid();
-    }
-
-    // DEBUG
-    @RequestMapping(value="/testuid={uid}", method=RequestMethod.GET)
-    public String testUserProfile(@PathVariable("uid") String uid, Model model) {
-        // if (uid.equals("")) { return "redirect:/"; }
-        User user = DatabaseAPI.findUser(uid);
-        if (user == null) { return "redirect:/"; }
-
-        model.addAttribute("name", user.getName());
-        model.addAttribute("uid", user.getUserid());
-        model.addAttribute("email", user.getEmail());
-
-        return "testUserProfile";
-    }
-
-    // DEBUG
-    @RequestMapping("/test-qlist")
-    public ModelAndView testQList() {
-        List<Question> questions = DatabaseAPI.retrieveQuestionList();
-
-        List<List<String>> qs = new ArrayList<List<String>>();
-        for (Question q : questions) {
-            qs.add(q.toStringList());
-        }
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("questions", qs);
-
-        return new ModelAndView("test-qlist", params);
     }
 
 }
