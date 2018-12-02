@@ -84,20 +84,28 @@
     				<!--the answers end-->
 
     				<!-- the answer form section -->
-	    			<form action="" method="post">
+	    			<form id="submit_form" action="/new_answer_qid=${question[0]}" method="post">
 
 					<div id="post-editor" class="margin-top" style="position: relative;">
 						<label class="s-label mb4" for="input-answer">Your Answer</label>
 						<div class="wmd-container">
-						<textarea id="input-answer" class="s-input-message" name="answer-text"style="opacity: 1; height: 238px;">
+						<textarea id="input-answer" class="s-input-message" name="content" style="opacity: 1; height: 238px;">
+						</textarea>
+						</div>
+					</div>
+
+					<div id="post-uid" class="margin-top" style="position: relative;">
+						<label class="s-label mb4" for="input-answer">Your UserID</label>
+						<div class="wmd-container">
+						<textarea id="input-uid" class="s-input-message" name="answererid"style="opacity: 1; height: 38px;">
 						</textarea>
 						</div>
 					</div>
 
 					<div class="wmd-container">
-					<button id="answer-button" class="s-btn" type="answer" tabindex="120" autocomplete="off">
-	                 Submit Your Answer
-	                </button>
+						<button id="answer-button" class="s-btn" type="submit" tabindex="120" autocomplete="off">
+		                 Submit Your Answer
+		                </button>
 	                </div>
 
 					</form>

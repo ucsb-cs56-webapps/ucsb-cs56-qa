@@ -6,7 +6,7 @@
 .container{
     max-width: 1264px;
     width: 100%;
-    
+
     display: flex;
     justify-content: center;
     margin:0 auto;
@@ -34,7 +34,7 @@
     justify-content: center;*/
     background-color: #FFF;
     border-radius: 0;
-    
+
     padding: 24px;
     box-sizing: border-box;
 }
@@ -50,7 +50,7 @@
     width: calc(100%-200px-24px);
 }*/
 
-.profile-sidebar{ 
+.profile-sidebar{
     width: 13%;
     padding-top: 24px;
     flex-shrink: 0;
@@ -137,9 +137,9 @@ textarea.s-input-message,textarea#s-input-message{
     width: 100%;
     font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif;
     font-size: 14px;
-    -moz-tab-size: 4;
+    /* -moz-tab-size: 4;
     -o-tab-size: 4;
-    tab-size: 4;
+    tab-size: 4; */
 }
 
 textarea{
@@ -224,7 +224,7 @@ button {
 
 .vote-cell{
     width:100%;
-    
+
 }
 
 .post-user{
@@ -292,5 +292,3 @@ button {
 .bg-1{
     background-color: rgb(94, 163, 163, 0.5)
 }
-
-

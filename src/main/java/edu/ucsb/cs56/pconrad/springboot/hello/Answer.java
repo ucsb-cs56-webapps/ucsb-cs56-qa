@@ -45,6 +45,12 @@ class Answer {
     public void setTimeCreate(String timeCreate) { this.timeCreate = timeCreate; }
     public String getTimeCreate() { return this.timeCreate; }
 
+    public boolean hasQCAfield() {
+        return (this.qid.compareTo("") != 0
+                && this.content.compareTo("") != 0
+                && this.answererid.compareTo("") != 0);
+    }
+
     public List<String> toStringList() {
         List<String> infoList = new ArrayList<>();
         infoList.add(this.aid);

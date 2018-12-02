@@ -57,7 +57,7 @@ public class HelloController {
         return "profile";
     }
 
-    // TODO
+    // DONE
     @RequestMapping(value="/question-id={qid}", method = RequestMethod.GET)
     public ModelAndView questionPage(@PathVariable("qid") String qid, Model model) {
         if (qid.equals("")) { return new ModelAndView("redirect:/question-list"); }
@@ -81,6 +81,20 @@ public class HelloController {
         params.put("answerer", us);
 
         return new ModelAndView("question-page", params);
+    }
+
+    // DONE
+    @RequestMapping(value="/new_answer_qid={qid}", method = RequestMethod.POST)
+    public ModelAndView questionPage(@PathVariable("qid") String qid, @ModelAttribute("newanswer") Answer answer, Model model) {
+        if (!answer.hasQCAfield()) {
+            return new ModelAndView("redirect:/question-id=" + qid);
+        }
+        System.out.println(answer);
+
+        Answer newAnswer = new Answer(qid, answer.getContent(), answer.getAnswererid());
+        DatabaseAPI.composeAnswer(newAnswer);
+
+        return new ModelAndView("redirect:/question-id=" + qid);
     }
 
     // DONE
@@ -114,8 +128,7 @@ public class HelloController {
             return "redirect:/create_user";
         }
 
-        System.out.println(user);
-
+        // System.out.println(user);
         DatabaseAPI.createUser(user);
 
         user = DatabaseAPI.findUser(user.getUserid());
