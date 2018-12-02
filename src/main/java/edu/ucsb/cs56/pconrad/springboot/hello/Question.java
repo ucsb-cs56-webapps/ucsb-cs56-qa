@@ -2,6 +2,8 @@ package edu.ucsb.cs56.pconrad.springboot.hello;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 
 class Question {
     private String qid;
@@ -42,6 +44,17 @@ class Question {
 
     public void setTimeCreate(String timeCreate) { this.timeCreate = timeCreate; }
     public String getTimeCreate() { return this.timeCreate; }
+
+    public List<String> toStringList() {
+        List<String> infoList = new ArrayList<>();
+        infoList.add(this.qid);
+        infoList.add(this.title);
+        infoList.add(this.content);
+        infoList.add(this.askerid);
+        infoList.add(this.timeCreate);
+
+        return infoList;
+    }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();

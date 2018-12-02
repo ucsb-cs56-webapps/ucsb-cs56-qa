@@ -21,12 +21,18 @@
 		<dependency>
 	          <groupId>org.springframework.boot</groupId>
 	          <artifactId>spring-boot-starter-freemarker</artifactId>
-		</dependency> 
+		</dependency>
 		<dependency>
 			  <groupId>com.google.firebase</groupId>
 			  <artifactId>firebase-admin</artifactId>
 			  <version>6.5.0</version>
 		</dependency>
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.28</version>
+        </dependency>
+
     </dependencies>
 
     <properties>
@@ -48,7 +54,7 @@
 		<jdkVersion>1.8</jdkVersion>
 		<!-- Use your own application name -->
 		<!-- at Heroku CLI, use heroku apps to list, or use Heroku Dashboard -->
-		<appName>ucsb-cs56-qa</appName> 
+		<appName>ucsb-cs56-qa</appName>
 		<processTypes>
 		  <!-- Tell Heroku how to launch your application -->
 		  <!-- You might have to remove the ./ in front   -->

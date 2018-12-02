@@ -1,7 +1,10 @@
 package edu.ucsb.cs56.pconrad.springboot.hello;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -88,20 +91,41 @@ public class HelloController {
         return "testUserProfile";
     }
 
+    // DEBUG
+    @RequestMapping("/test-qlist")
+    public ModelAndView testQList() {
+        List<Question> questions = DatabaseAPI.retrieveQuestionList();
+
+        List<List<String>> qs = new ArrayList<List<String>>();
+        for (Question q : questions) {
+            qs.add(q.toStringList());
+        }
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("questions", qs);
+
+        return new ModelAndView("test-qlist", params);
+    }
+
 
     @RequestMapping("/question-page")
     public String questionpage() {
         return "question-page";
     }
 
-    @RequestMapping("/question-list")
-    public String questionlist(Model model){
-        List<Question> list = DatabaseAPI.retrieveQuestionList();
-        System.out.println(list);
+    @RequestMapping(value = "/question-list", method = RequestMethod.GET)
+    public ModelAndView questionList() {
+        List<Question> questions = DatabaseAPI.retrieveQuestionList();
 
-        model.addAttribute("questions", list);
+        List<List<String>> qs = new ArrayList<List<String>>();
+        for (Question q : questions) {
+            qs.add(q.toStringList());
+        }
 
-        return "question-list";
+        Map<String, Object> params = new HashMap<>();
+        params.put("questions", qs);
+
+        return new ModelAndView("question-list", params);
     }
 
 
