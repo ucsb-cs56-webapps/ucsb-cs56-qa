@@ -112,7 +112,7 @@ public class HelloController {
     }
 
     // DONE
-    @RequestMapping(value = "/question-list", method = RequestMethod.GET)
+    @RequestMapping(value={"/question-list", "/question-page"}, method=RequestMethod.GET)
     public ModelAndView questionList() {
         List<Question> questions = DatabaseAPI.retrieveQuestionList();
 
@@ -130,13 +130,13 @@ public class HelloController {
 
     /* DEBUG */
     // DEBUG
-    @RequestMapping(value = "/create_user", method = RequestMethod.GET)
+    @RequestMapping(value = "/create_user", method=RequestMethod.GET)
     public ModelAndView testCreateUser() {
         return new ModelAndView("testCreateUser", "user", new User());
     }
 
     // DEBUG
-    @RequestMapping(value = "/create_user", method = RequestMethod.POST)
+    @RequestMapping(value="/create_user", method=RequestMethod.POST)
     public String createUser(@ModelAttribute("user") User user, BindingResult result, ModelMap model) {
         if (result.hasErrors() || !user.hasAllField()) {
             return "redirect:/create_user";
@@ -154,7 +154,7 @@ public class HelloController {
     }
 
     // DEBUG
-    @RequestMapping(value="/testuid={uid}", method = RequestMethod.GET)
+    @RequestMapping(value="/testuid={uid}", method=RequestMethod.GET)
     public String testUserProfile(@PathVariable("uid") String uid, Model model) {
         // if (uid.equals("")) { return "redirect:/"; }
         User user = DatabaseAPI.findUser(uid);

@@ -39,7 +39,7 @@
 	    					</div>
 			    			<div class="question-title wmd-container border4-5893d4 margin-top5">
 
-	    						<a href="/question-page">${question[1]}</a>
+	    						<a href="/question-id=${question[0]}">${question[1]}</a>
 
 
 	    					</div>
