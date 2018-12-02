@@ -1,4 +1,6 @@
 .vscode
+bin/
+target/
 
 # Firebase authentication file
 experimental-prj-firebase-adminsdk.json
@@ -29,4 +31,4 @@ experimental-prj-firebase-adminsdk.json
 *.zip
 *.tar.gz
 *.rar
-bin
+
