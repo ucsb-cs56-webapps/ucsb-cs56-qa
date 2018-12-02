@@ -55,6 +55,7 @@ public class DatabaseAPI {
     // DONE
     // findUser()
     public static User findUser(String userid) {
+        if (userid.equals("")) { return null; }
         DatabaseReference ref = DatabaseAPI.database.getReference("users").child(userid);
         CountDownLatch doneSignal = new CountDownLatch(1);
         List<User> temp = new ArrayList<>();
@@ -105,6 +106,7 @@ public class DatabaseAPI {
     // DONE
     // findQuestion()
     public static Question findQuestion(String qid) {
+        if (qid.equals("")) { return null; }
         DatabaseReference ref = DatabaseAPI.database.getReference("questions").child(qid);
         CountDownLatch doneSignal = new CountDownLatch(1);
         List<Question> temp = new ArrayList<>();
@@ -142,6 +144,7 @@ public class DatabaseAPI {
     // DONE
     // retrieveUserQuestionList()
     public static List<String> retrieveUserQuestionList(String uid) {
+        if (uid.equals("")) { return null; }
         DatabaseReference ref = DatabaseAPI.database.getReference("user_question_lists").child(uid);
         CountDownLatch doneSignal = new CountDownLatch(1);
         List<String> qids = new ArrayList<>();
@@ -193,6 +196,7 @@ public class DatabaseAPI {
     // DONE
     // findAnswer()
     public static Answer findAnswer(String aid) {
+        if (aid.equals("")) { return null; }
         DatabaseReference ref = DatabaseAPI.database.getReference("answers").child(aid);
         CountDownLatch doneSignal = new CountDownLatch(1);
         List<Answer> temp = new ArrayList<>();
@@ -230,6 +234,7 @@ public class DatabaseAPI {
     // DONE
     // retrieveUserAnswerList()
     public static List<String> retrieveUserAnswerList(String uid) {
+        if (uid.equals("")) { return null; }
         DatabaseReference ref = DatabaseAPI.database.getReference("user_answer_lists").child(uid);
         CountDownLatch doneSignal = new CountDownLatch(1);
         List<String> aids = new ArrayList<>();
@@ -267,6 +272,7 @@ public class DatabaseAPI {
     // DONE
     // retrieveQuestionAnswerList()
     public static List<String> retrieveQuestionAnswerList(String qid) {
+        if (qid.equals("")) { return null; }
         DatabaseReference ref = DatabaseAPI.database.getReference("question_answer_lists").child(qid);
         CountDownLatch doneSignal = new CountDownLatch(1);
         List<String> aids = new ArrayList<>();

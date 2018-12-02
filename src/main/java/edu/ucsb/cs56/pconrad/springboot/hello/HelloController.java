@@ -27,31 +27,80 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
 public class HelloController {
+    // DONE
     @RequestMapping("/")
     public String login() {
         return "login";
     }
 
+    // TODO
     @RequestMapping("/register")
     public String register() {
         return "register";
     }
 
+    // TODO
 	@RequestMapping("/home")
     public String home() {
         return "home";
     }
 
-	@RequestMapping("/questions")
+    // TODO
+	@RequestMapping("/ask-question")
     public String questions() {
-        return "questions";
+        return "ask-question";
     }
 
+    // TODO
     @RequestMapping("/profile")
     public String profile() {
         return "profile";
     }
 
+    // TODO
+    @RequestMapping(value="/question-id={qid}", method = RequestMethod.GET)
+    public ModelAndView questionPage(@PathVariable("qid") String qid, Model model) {
+        if (qid.equals("")) { return new ModelAndView("redirect:/question-list"); }
+        Question q = DatabaseAPI.findQuestion(qid);
+        if (q == null) { return new ModelAndView("redirect:/question-list"); }
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("question", q.toStringList());
+
+        List<String> answerList = DatabaseAPI.retrieveQuestionAnswerList(qid);
+        List<List<String>> as = new ArrayList<List<String>>();
+        List<String> us = new ArrayList<>();
+        for (String aid : answerList) {
+            Answer a = DatabaseAPI.findAnswer(aid);
+            as.add(a.toStringList());
+            User u = DatabaseAPI.findUser(a.getAnswererid());
+            us.add(u.getName());
+
+        }
+        params.put("answers", as);
+        params.put("answerer", us);
+
+        return new ModelAndView("question-page", params);
+    }
+
+    // DONE
+    @RequestMapping(value = "/question-list", method = RequestMethod.GET)
+    public ModelAndView questionList() {
+        List<Question> questions = DatabaseAPI.retrieveQuestionList();
+
+        List<List<String>> qs = new ArrayList<List<String>>();
+        for (Question q : questions) {
+            qs.add(q.toStringList());
+        }
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("questions", qs);
+
+        return new ModelAndView("question-list", params);
+    }
+
+
+    /* DEBUG */
     // DEBUG
     @RequestMapping(value = "/create_user", method = RequestMethod.GET)
     public ModelAndView testCreateUser() {
@@ -80,8 +129,8 @@ public class HelloController {
     // DEBUG
     @RequestMapping(value="/testuid={uid}", method = RequestMethod.GET)
     public String testUserProfile(@PathVariable("uid") String uid, Model model) {
+        // if (uid.equals("")) { return "redirect:/"; }
         User user = DatabaseAPI.findUser(uid);
-
         if (user == null) { return "redirect:/"; }
 
         model.addAttribute("name", user.getName());
@@ -106,27 +155,5 @@ public class HelloController {
 
         return new ModelAndView("test-qlist", params);
     }
-
-
-    @RequestMapping("/question-page")
-    public String questionpage() {
-        return "question-page";
-    }
-
-    @RequestMapping(value = "/question-list", method = RequestMethod.GET)
-    public ModelAndView questionList() {
-        List<Question> questions = DatabaseAPI.retrieveQuestionList();
-
-        List<List<String>> qs = new ArrayList<List<String>>();
-        for (Question q : questions) {
-            qs.add(q.toStringList());
-        }
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("questions", qs);
-
-        return new ModelAndView("question-list", params);
-    }
-
 
 }

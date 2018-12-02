@@ -25,7 +25,7 @@
     				<div class="post-layout">
 	    				<!-- Here is the question title -->
 		    			<div class="question-context-title btm_border">
-		    			<div>${question.getTitle()}</div>
+		    			<div>${question[1]}</div>
 
                         <a href="/question-list" float="right">View all the questions</a>
 		    			</div>
@@ -37,7 +37,7 @@
 
 
 		    				<p>
-		    					${question.getContent()}
+		    					${question[2]}
 		    				</p>
 
 		    			</div>
@@ -50,7 +50,7 @@
 
     				<!-- Here are all the answers -->
 
-    				<label id="answer-header" class="s-label mb4" for="input-answer">2 Answer</label>
+    				<label id="answer-header" class="s-label mb4" for="input-answer">${answers?size} Answer</label>
 
                     <#list answers as answer>
     				<div id="answer-${answer?counter}" class="answers">
@@ -65,12 +65,12 @@
     						<div class="post-text wmd-container border4-5893d4 margin-top5">
     							<div class="post-user">
                                     <img class="ml-2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHaSURBVEhLYxgFowAvcPIOtnX3DZ/lGxKzx9UnbKarZ5A1VIo6wMM/rNfNN/Rvc0ffn0VLV/1vbu/94+oT+tfDL7wHqoQy4OwdEu3pH/Hr5q07/5HBjVu3/3sGRPx28g6JgColH/gERV9asnzNP6jZKAAk7hMcfQGqlHwADKZfFy9fhRqLCkDibj5hP6FKyQfAIHl36MhxqLGo4CBQ3DMw8h1UKfnAMyByUVF53Y9//1BDDMQvLKv94RUQsRCqlHzg5h8u6+4X/r6xtfvni5evwBa8ePHqP4gPEgdGvDRUKWXA2TNcDeijEy7eIf89/CL+gGjvwKijLt5BqlAl1AMuPqFyjl7BViAaKkR1wAgKOhevcE0QDeJDhKkAnH0CTYFBtMLDP/wLKJhgGMR39wtbCpKHKiUd2IeG8rj5hS0CFSd1zZ0/T54+C47w379/g+kTp87+B4mDihegZZONjdNYoVqJAy4uofxeAVEXo5Oyvt9/8BCconABkHx0UuZ3r4DIsyB9UCMIA2DBtyM5s/DH16/foEbhByB1yZkF34FBuAVqBH4ASj1egVE/nz57ATWCOABSD9Ln7BNiCTUKNwgNDWXetnOvG1CfC6n44MGjTiD9UKNGATmAgQEALM3GBzFt50AAAAAASUVORK5CYII=" >
-                                <!-- <span>${answeruser.getName()}</span>
-                                <span>${answeruser.getTimeCreate()}</span> -->
+                                <span>${answerer[answer?index]}</span>
+                                <span>${answer[4]}</span>
 
     							</div>
     							<p>
-    								<!-- ${answer.getContent()} -->
+    								${answer[2]}
     							</p>
 
 
