@@ -58,7 +58,7 @@ public class HelloController {
     // DONE
     @RequestMapping(value="/create_user", method=RequestMethod.POST)
     public String createUser(@ModelAttribute("user") User user, BindingResult result, ModelMap model) {
-        if (result.hasErrors() || !user.hasAllField()) {
+        if (result.hasErrors() || !user.hasAllField() || DatabaseAPI.userExists(user.getUserid())) {
             return "redirect:/create_user";
         }
         DatabaseAPI.createUser(user);
@@ -79,7 +79,7 @@ public class HelloController {
     // DONE
     @RequestMapping(value="/ask-question", method=RequestMethod.POST)
     public ModelAndView questions(@ModelAttribute("newquestion") Question question, Model model) {
-        if (!question.hasTCAfield()) {
+        if (!question.hasTCAfield() || !DatabaseAPI.isValueUser(question.getAskerid())) {
             return new ModelAndView("redirect:/ask-question");
         }
         Question newQuestion = new Question(question.getTitle(), question.getContent(), question.getAskerid());
@@ -127,7 +127,7 @@ public class HelloController {
     // DONE
     @RequestMapping(value="/new_answer_qid={qid}", method = RequestMethod.POST)
     public ModelAndView questionPage(@PathVariable("qid") String qid, @ModelAttribute("newanswer") Answer answer, Model model) {
-        if (!answer.hasQCAfield()) {
+        if (!answer.hasQCAfield() || !DatabaseAPI.isValueUser(answer.getAnswererid())) {
             return new ModelAndView("redirect:/question-id=" + qid);
         }
         Answer newAnswer = new Answer(qid, answer.getContent(), answer.getAnswererid());

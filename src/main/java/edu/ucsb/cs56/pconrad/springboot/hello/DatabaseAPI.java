@@ -42,6 +42,22 @@ public class DatabaseAPI {
 
     private static final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
+    // TODO
+    // isValueUser()
+    public static boolean isValueUser(String uid) {
+        if (uid == null) { return false; }
+        User user = DatabaseAPI.findUser(uid);
+        return (user != null);
+    }
+
+    // TODO
+    // userExists()
+    public static boolean userExists(String uid) {
+        if (uid == null || uid.equals("")) { return false; }
+        User user = DatabaseAPI.findUser(uid);
+        return (user != null);
+    }
+
     // DONE
     // requestLogin()
     public static boolean requestLogin(User user) {
