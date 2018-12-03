@@ -56,8 +56,8 @@
     						<div class="post-text wmd-container border4-5893d4 margin-top5">
     							<div class="post-user">
                                     <img class="ml-2" src="img/person.png" >
-                                <span>${answerer[answer?index]}</span>
-                                <span>${answer[4]}</span>
+                                <span>${answerer[answer?index]}&nbsp;</span>
+                                <span>&nbsp;${answer[4]}</span>
 
     							</div>
     							<p>
