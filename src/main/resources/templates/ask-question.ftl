@@ -10,28 +10,27 @@
 
 <body class="body-style">
 
-    <#include "./partials/navbar.ftl" />
-    <div class="container">
-    	<div class="profile-sidebar">
-    		<#include "./partials/profile_card.ftl"/>
-    	</div>
+	<#include "./partials/navbar.ftl" />
+	<div class="container">
+		<div class="profile-sidebar">
+			<#include "./partials/profile_card.ftl"/>
+		</div>
 
-    	<div class="content justify-center">
-    		<div id="mainbar" >
+		<div class="content justify-center">
+			<div id="mainbar" >
 
-          <div class="question-context-title">
-    			<div>Ask A Question</div>
+				<div class="question-context-title">
+					<div>Ask A Question</div>
+					<a href="/question-list">View all the questions</a>
 
-          <a href="/question-list">View all the questions</a>
+				</div>
 
-    			</div>
-
-          <form action="" method="post">
+			<form action="" method="post">
   				<div  style="position: relative;">
   					<div class="form-item">
 	   				<label class="s-label mb4" for="title">Title</label>
-	    			<input type="text" id="title" name="title" placeholder="What's your question? Be specific."class="s-input">
-	    			</div>
+					<input type="text" id="title" name="title" placeholder="What's your question? Be specific."class="s-input">
+					</div>
   				</div>
 
 				<div id="post-editor" style="position: relative;">
@@ -51,22 +50,20 @@
 				</div>
 
 				<div >
-				<button id="submit-button" class="s-btn" type="submit" tabindex="120" autocomplete="off">
-                 Submit Your Question
-        </button>
-        </div>
+					<button id="submit-button" class="s-btn" type="submit" tabindex="120" autocomplete="off">
+						Submit Your Question
+					</button>
+				</div>
+
+			</form>
 
 
+			<div id="sidebar" class=asksidebar>
 
-				</form>
+			</div>
+		</div>
 
-
-    		<div id="sidebar" class=asksidebar>
-
-    		</div>
-    	</div>
-
-    </div>
+	</div>
   </div>
 </body>
 </html>

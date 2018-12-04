@@ -55,7 +55,7 @@ public class HelloController {
         return new ModelAndView("create-user", "user", new User());
     }
 
-    // DONE
+    // TODO
     @RequestMapping(value="/create_user", method=RequestMethod.POST)
     public String createUser(@ModelAttribute("user") User user, BindingResult result, ModelMap model) {
         if (result.hasErrors() || !user.hasAllField() || DatabaseAPI.userExists(user.getUserid())) {
@@ -68,6 +68,34 @@ public class HelloController {
         model.addAttribute("email", user.getEmail());
 
         return "redirect:/user-id=" + user.getUserid();
+    }
+
+    // TODO
+    @RequestMapping(value="/profile-uid={uid}", method=RequestMethod.GET)
+    public ModelAndView profile(@PathVariable("uid") String uid) {
+        User user = DatabaseAPI.findUser(uid);
+        if (user == null) { return new ModelAndView("redirect:/"); }
+
+        List<String> qidList = DatabaseAPI.retrieveUserQuestionList(user.getUserid());
+        List<List<String>> questions = new ArrayList<>();
+        for (String qid : qidList) {
+            questions.add(DatabaseAPI.findQuestion(qid).toStringList());
+        }
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("uid", user.getUserid());
+        params.put("name", user.getName());
+        params.put("email", user.getEmail());
+        params.put("questions", questions);
+        return new ModelAndView("profile", params);
+    }
+
+    // TODO
+    @RequestMapping(value="/profile-uid={uid}", method=RequestMethod.POST)
+    public ModelAndView changeProfile(@PathVariable("uid") String uid, @ModelAttribute("newName") String newName) {
+        if (newName.equals("")) { return new ModelAndView("redirect:/profile-uid=" + uid); }
+        DatabaseAPI.changeUserName(uid, newName);
+        return new ModelAndView("redirect:/profile-uid=" + uid);
     }
 
     // DONE
@@ -87,19 +115,19 @@ public class HelloController {
         return new ModelAndView("redirect:/question-id=" + question.getQid());
     }
 
-    // DONE
-    @RequestMapping(value="/user-id={uid}", method=RequestMethod.GET)
-    public String testUserProfile(@PathVariable("uid") String uid, Model model) {
-        // if (uid.equals("")) { return "redirect:/"; }
-        User user = DatabaseAPI.findUser(uid);
-        if (user == null) { return "redirect:/"; }
-
-        model.addAttribute("name", user.getName());
-        model.addAttribute("uid", user.getUserid());
-        model.addAttribute("email", user.getEmail());
-
-        return "user-profile";
-    }
+    // DEBUG
+    // @RequestMapping(value="/user-id={uid}", method=RequestMethod.GET)
+    // public String testUserProfile(@PathVariable("uid") String uid, Model model) {
+    //     // if (uid.equals("")) { return "redirect:/"; }
+    //     User user = DatabaseAPI.findUser(uid);
+    //     if (user == null) { return "redirect:/"; }
+    //
+    //     model.addAttribute("name", user.getName());
+    //     model.addAttribute("uid", user.getUserid());
+    //     model.addAttribute("email", user.getEmail());
+    //
+    //     return "user-profile";
+    // }
 
     // DONE
     @RequestMapping(value="/question-id={qid}", method = RequestMethod.GET)
@@ -117,7 +145,6 @@ public class HelloController {
             as.add(a.toStringList());
             User u = DatabaseAPI.findUser(a.getAnswererid());
             us.add(u.getName());
-
         }
         params.put("answers", as);
         params.put("answerer", us);

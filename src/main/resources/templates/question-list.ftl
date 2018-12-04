@@ -25,7 +25,6 @@
 		    			<a href="/ask-question" float="right">Ask a question</a>
 		    		</div>
 
-
 		    		<!-- context title end-->
 
 		    		<!-- question lists -->
@@ -41,17 +40,13 @@
 
 	    						<a href="/question-id=${question[0]}">${question[1]}</a>
 
-
 	    					</div>
     				</div>
     				<#else>
     					<p>No Questions!</p>
     				</#list>
 
-
 		    	</div>
-
-
     		</div>
     	</div>
     </div>

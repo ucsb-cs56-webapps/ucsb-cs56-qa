@@ -42,7 +42,7 @@ public class DatabaseAPI {
 
     private static final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-    // TODO
+    // DONE
     // isValueUser()
     public static boolean isValueUser(String uid) {
         if (uid == null) { return false; }
@@ -50,7 +50,7 @@ public class DatabaseAPI {
         return (user != null);
     }
 
-    // TODO
+    // DONE
     // userExists()
     public static boolean userExists(String uid) {
         if (uid == null || uid.equals("")) { return false; }
@@ -74,6 +74,16 @@ public class DatabaseAPI {
         if (DatabaseAPI.findUser(user.getUserid()) != null) { return false; }
         DatabaseReference ref = DatabaseAPI.database.getReference("users");
         ref.child(user.getUserid()).setValueAsync(user);
+        return true;
+    }
+
+    // TODO
+    // changeUserName()
+    public static boolean changeUserName(String uid, String newName) {
+        if (newName.equals("")) { return false; }
+        if (!DatabaseAPI.userExists(uid)) { return false; }
+        DatabaseReference ref = DatabaseAPI.database.getReference("users").child(uid);
+        ref.child("name").setValueAsync(newName);
         return true;
     }
 
