@@ -8,6 +8,10 @@
     <#include "./partials/navbar.ftl" />
 	<h1>Create New User</h1>
 
+    <h2><font color="red">${message}</font></h2>
+
+    <p></p>
+
     <form id="submit_form" action="/create_user" method="post">
         <label for="name">Name</label>
         <input type="text" name="name">

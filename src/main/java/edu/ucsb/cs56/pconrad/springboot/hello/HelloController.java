@@ -51,26 +51,33 @@ public class HelloController {
 
     // DONE
     @RequestMapping(value = "/create_user", method=RequestMethod.GET)
-    public ModelAndView testCreateUser() {
-        return new ModelAndView("create-user", "user", new User());
+    public ModelAndView createUserPage() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("message", "");
+        return new ModelAndView("create-user", params);
     }
 
     // TODO
     @RequestMapping(value="/create_user", method=RequestMethod.POST)
-    public String createUser(@ModelAttribute("user") User user, BindingResult result, ModelMap model) {
-        if (result.hasErrors() || !user.hasAllField() || DatabaseAPI.userExists(user.getUserid())) {
-            return "redirect:/create_user";
+    public ModelAndView createUser(@ModelAttribute("user") User user, ModelMap model) {
+        Map<String, Object> params = new HashMap<>();
+        if (!user.hasAllField()) {
+            params.put("message", "You have to fill all fields!");
+            return new ModelAndView("create-user", params);
+        } else if (DatabaseAPI.userExists(user.getUserid())) {
+            params.put("message", "This UserID has been registered!");
+            return new ModelAndView("create-user", params);
         }
         DatabaseAPI.createUser(user);
         user = DatabaseAPI.findUser(user.getUserid());
-        model.addAttribute("name", user.getName());
-        model.addAttribute("uid", user.getUserid());
-        model.addAttribute("email", user.getEmail());
+        params.put("name", user.getName());
+        params.put("uid", user.getUserid());
+        params.put("email", user.getEmail());
 
-        return "redirect:/user-id=" + user.getUserid();
+        return new ModelAndView("redirect:/user-id=" + user.getUserid(), params);
     }
 
-    // TODO
+    // DONE
     @RequestMapping(value="/profile-uid={uid}", method=RequestMethod.GET)
     public ModelAndView profile(@PathVariable("uid") String uid) {
         User user = DatabaseAPI.findUser(uid);
@@ -90,7 +97,7 @@ public class HelloController {
         return new ModelAndView("profile", params);
     }
 
-    // TODO
+    // DONE
     @RequestMapping(value="/profile-uid={uid}", method=RequestMethod.POST)
     public ModelAndView changeProfile(@PathVariable("uid") String uid, @ModelAttribute("newName") String newName) {
         if (newName.equals("")) { return new ModelAndView("redirect:/profile-uid=" + uid); }
@@ -114,20 +121,6 @@ public class HelloController {
         DatabaseAPI.composeQuestion(newQuestion);
         return new ModelAndView("redirect:/question-id=" + question.getQid());
     }
-
-    // DEBUG
-    // @RequestMapping(value="/user-id={uid}", method=RequestMethod.GET)
-    // public String testUserProfile(@PathVariable("uid") String uid, Model model) {
-    //     // if (uid.equals("")) { return "redirect:/"; }
-    //     User user = DatabaseAPI.findUser(uid);
-    //     if (user == null) { return "redirect:/"; }
-    //
-    //     model.addAttribute("name", user.getName());
-    //     model.addAttribute("uid", user.getUserid());
-    //     model.addAttribute("email", user.getEmail());
-    //
-    //     return "user-profile";
-    // }
 
     // DONE
     @RequestMapping(value="/question-id={qid}", method = RequestMethod.GET)
