@@ -18,18 +18,3 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
-<!-- Firebase setup -->
-<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-<script>
-	// Initialize Firebase{
-	var config = {
-		apiKey: "AIzaSyBGfgsEoRK_8O3KOO-wY1rojECetjDzHao",
-		authDomain: "experimental-prj.firebaseapp.com",
-		databaseURL: "https://experimental-prj.firebaseio.com",
-		projectId: "experimental-prj",
-		storageBucket: "experimental-prj.appspot.com",
-		messagingSenderId: "119547510608"
-	};
-	firebase.initializeApp(config);
-</script>
