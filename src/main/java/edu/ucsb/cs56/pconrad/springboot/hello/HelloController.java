@@ -46,7 +46,7 @@ public class HelloController {
         if (!user.hasUPfield() || !DatabaseAPI.requestLogin(user)) {
             return "login";
         }
-        return "redirect:/user-id=" + user.getUserid();
+        return "redirect:/profile-uid=" + user.getUserid();
     }
 
     // DONE
@@ -74,7 +74,7 @@ public class HelloController {
         params.put("uid", user.getUserid());
         params.put("email", user.getEmail());
 
-        return new ModelAndView("redirect:/user-id=" + user.getUserid(), params);
+        return new ModelAndView("redirect:/profile-uid=" + user.getUserid(), params);
     }
 
     // DONE
