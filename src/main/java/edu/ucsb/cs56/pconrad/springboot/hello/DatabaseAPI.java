@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class DatabaseAPI {
-    private static final String authFileName = "experimental-prj-firebase-adminsdk.json";
+    private static final String authFileName = "target/classes/static/auth/experimental-prj-firebase-adminsdk.json";
 
     // initialize database access
     static {
