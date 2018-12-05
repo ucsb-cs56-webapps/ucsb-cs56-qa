@@ -15,12 +15,26 @@ and earn points.
 Link to Website: https://ucsb-cs56-qa.herokuapp.com/
 
 
-# How to set up connection to Firebase
+# How to set up connection to Firebase from your Webapp
 
-1. Contact Ken Xu at c_xu@ucsb.edu with your google account (or ucsb.edu account), so that he can add you as a collaborator.
-2. Go to [Firebase Console](https://console.firebase.google.com/) and log in.
-3. Select "cs56-f18-qa" and go to "Project Settings" -> "Service Accounts" -> "Firebase Admin SDK", click "Generate new private key".
-4. Rename the downloaded json file to `experimental-prj-firebase-adminsdk.json` and move it to `src/edu/static/auth/` directory.
-5. Now you can use `mvn spring-boot:run` to test the webapp in `http://localhost:8080/`.
+1. Go to [Firebase Console](https://console.firebase.google.com/) and set up a new project.
+2. Select the new project and go to "Project Settings" -> "Service Accounts" -> "Firebase Admin SDK", copy the Java version of Admin SDK configuration snippet, and click "Generate new private key".
+3. Rename the downloaded json file to `experimental-prj-firebase-adminsdk.json` and move it to `src/edu/static/auth/` directory.
+4. Modify `static` field in `DatabaseAPI.java` with copied contents:
+```
+// You can copy these code
+static {
+  FileInputStream serviceAccount =
+    new FileInputStream("path/to/serviceAccountKey.json");
+
+  FirebaseOptions options = new FirebaseOptions.Builder()
+    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+    .setDatabaseUrl("https://<your-project-name>.firebaseio.com")
+    .build();
+
+  FirebaseApp.initializeApp(options);
+}
+```
+5. Save the change and now you can use `mvn spring-boot:run` to test the webapp in `http://localhost:8080/`.
 
 **WARNING: Keep your private key safe and NEVER expose it to the public.**
