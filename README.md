@@ -45,3 +45,9 @@ Link to Website: https://ucsb-cs56-qa.herokuapp.com/
 5. Save the change and now you can use `mvn spring-boot:run` to test the webapp in `http://localhost:8080/`.
 
 **WARNING: Keep your private key safe and NEVER expose it to the public.**
+# F18 Final Remarks
+The code uses MVN, Spring-Boot, and Heroku to deploy a website. In the templates folder you will find all the ftl files used to customize the website. In the java file we have all java classes that contain the back-end code which controls the functionalities of the app. The css files are used to provide extra customizations to the FTL files. The pom file contains all the dpendencies. 
+
+Features that should be added to the webapp is location services, google Oauth, question tags, and making the webapp mobile friendly. Currently if you try opening the website on your phone you will be welcomed with overlapping images that block the login, this should be resolved. Question tags would help filter different types of questions on the question list. Google Oauth would provide an alternative way to login into the app. Location services will be used to make specific question page based on a certain area.
+
+Potential bugs include the question interface when submitting questions. This may need to be refactored. Advice: revamp the backend and if very ambitious make a mobile port of the project. Good luck.
